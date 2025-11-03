@@ -3,6 +3,7 @@ package com.example.musicapp.service.impl;
 import com.example.musicapp.entity.Genre;
 import com.example.musicapp.entity.Song;
 import com.example.musicapp.exception.DeletionBlockedException;
+import com.example.musicapp.exception.DuplicateNameException;
 import com.example.musicapp.repository.GenreRepository;
 import com.example.musicapp.repository.SongRepository;
 import com.example.musicapp.service.IGenreService;
@@ -42,6 +43,19 @@ public class GenreServiceImpl implements IGenreService {
     @Override
     @Transactional
     public Genre save(Genre genre) {
+        boolean nameExists;
+        if (genre.getId() == null) {
+            // TẠO MỚI
+            nameExists = genreRepository.existsByNameIgnoreCase(genre.getName());
+        } else {
+            // CẬP NHẬT
+            nameExists = genreRepository.existsByNameIgnoreCaseAndIdNot(genre.getName(), genre.getId());
+        }
+
+        if (nameExists) {
+            // NÉM EXCEPTION
+            throw new DuplicateNameException("Tên thể loại '" + genre.getName() + "' đã tồn tại.");
+        }
         return genreRepository.save(genre);
     }
 

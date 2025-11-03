@@ -13,6 +13,7 @@
     </div>
 
     <form th:action="@{/genres/create}" th:object="${genreDTO}" method="post">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
         <div>
             <label for="name">Tên Thể loại:</label>
             <input type="text" id="name" th:field="*{name}" />

@@ -2,6 +2,7 @@ package com.example.musicapp.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -11,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
 import static org.springframework.security.config.Customizer.withDefaults; // Dùng cho formLogin mặc định
 
 @Configuration
@@ -19,7 +21,7 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder(); // Luôn mã hóa mật khẩu!
+        return new BCryptPasswordEncoder();
     }
 
     @Bean
@@ -27,29 +29,37 @@ public class SecurityConfig {
         // --- Cung cấp User (Ví dụ: lưu trong bộ nhớ - KHÔNG DÙNG CHO PRODUCTION) ---
         UserDetails user = User.builder()
                 .username("user")
-                .password(passwordEncoder().encode("123")) // Mã hóa mật khẩu
+                .password(passwordEncoder().encode("123"))
                 .roles("USER")
                 .build();
         UserDetails admin = User.builder()
                 .username("admin")
                 .password(passwordEncoder().encode("admin123"))
-                .roles("ADMIN", "USER") // Admin có cả 2 vai trò
+                .roles("ADMIN", "USER")
                 .build();
-        // Trong thực tế, bạn sẽ tạo implementation đọc user từ Database
         return new InMemoryUserDetailsManager(user, admin);
     }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(authz -> authz
+                .authorizeHttpRequests(authorize -> authorize
                         // Cho phép truy cập công khai CSS, JS, trang chủ, play nhạc, trang lỗi
                         .requestMatchers("/css/**", "/js/**", "/", "/songs/play/**", "/error/**").permitAll()
-                        // Yêu cầu ADMIN cho các chức năng xóa
+
+                        // Yêu cầu ADMIN cho các chức năng xóa (quy tắc này vẫn đúng)
                         .requestMatchers("/songs/delete/**", "/artists/delete/**", "/genres/delete/**").hasRole("ADMIN")
-                        // Yêu cầu ADMIN cho trang tạo/sửa Artist, Genre (ví dụ)
-                        .requestMatchers("/artists/**", "/genres/**").hasRole("ADMIN") // Rút gọn lại
-                        // Các request còn lại yêu cầu phải đăng nhập
+
+                        // SỬA LỖI ƯU TIÊN 6: Tách bạch quyền xem và quyền sửa đổi
+
+                        // 1. Yêu cầu ADMIN cho các hành động C/U (Create/Update) của Artist và Genre
+                        .requestMatchers("/artists/create", "/artists/edit/**", "/artists/update").hasRole("ADMIN")
+                        .requestMatchers("/genres/create", "/genres/edit/**", "/genres/update").hasRole("ADMIN")
+
+                        // 2. Cho phép mọi USER đã đăng nhập được XEM (Read) danh sách
+                        .requestMatchers(HttpMethod.GET, "/artists", "/genres").authenticated()
+
+                        // Các request còn lại (ví dụ: CRUD của Song) yêu cầu phải đăng nhập (authenticated)
                         .anyRequest().authenticated()
                 )
                 // Bật form login mặc định

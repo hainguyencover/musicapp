@@ -3,9 +3,12 @@ package com.example.musicapp.controller.web;
 import com.example.musicapp.dto.ArtistDTO;
 import com.example.musicapp.entity.Artist;
 import com.example.musicapp.exception.DeletionBlockedException;
+import com.example.musicapp.exception.DuplicateNameException;
 import com.example.musicapp.exception.ResourceNotFoundException;
 import com.example.musicapp.service.IArtistService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -26,6 +29,9 @@ import java.util.stream.Collectors;
 public class ArtistController {
     private final IArtistService artistService;
 
+    // THÊM LOGGER
+    private static final Logger logger = LoggerFactory.getLogger(ArtistController.class);
+
     public ArtistController(IArtistService artistService) {
         this.artistService = artistService;
     }
@@ -43,62 +49,68 @@ public class ArtistController {
     @GetMapping
     public String listArtists(Model model,
                               @PageableDefault(page = 0, size = 10, sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
+        logger.debug("Fetching artist list page {}", pageable.getPageNumber());
         Page<Artist> artistPageEntity = artistService.findAll(pageable);
 
-        // Map Page<Artist> sang Page<ArtistDTO>
         List<ArtistDTO> dtoList = artistPageEntity.getContent().stream()
                 .map(artist -> new ArtistDTO(artist.getId(), artist.getName()))
                 .collect(Collectors.toList());
         Page<ArtistDTO> artistPageDTO = new PageImpl<>(dtoList, pageable, artistPageEntity.getTotalElements());
 
-        model.addAttribute("artistPage", artistPageDTO); // Gửi Page DTO
+        model.addAttribute("artistPage", artistPageDTO);
         return "artist/list";
     }
 
     // --- Hiển thị form tạo mới ---
     @GetMapping("/create")
     public String showCreateForm(Model model) {
+        logger.info("Displaying create artist form");
         model.addAttribute("artistDTO", new ArtistDTO());
         return "artist/create"; // templates/artist/create.html
     }
 
-    // --- Xử lý tạo mới ---
     @PostMapping("/create")
     public String createArtist(@Valid @ModelAttribute("artistDTO") ArtistDTO artistDTO,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
-            return "artist/create"; // Quay lại form nếu có lỗi
+            logger.warn("Validation errors in createArtist form.");
+            return "artist/create"; // Quay lại form nếu có lỗi DTO
         }
         try {
             Artist artist = new Artist();
             artist.setName(artistDTO.getName());
             artistService.save(artist);
             redirectAttributes.addFlashAttribute("successMessage", "Thêm nghệ sĩ thành công!");
+            logger.info("Artist created successfully: {}", artist.getName());
             return "redirect:/artists";
-        } catch (Exception e) { // Bắt lỗi chung (ví dụ: trùng tên nếu có constraint DB)
+        } catch (DuplicateNameException e) { // SỬA: Bắt DuplicateNameException
+            logger.warn("Failed to create artist due to duplicate name: {}", e.getMessage());
+            bindingResult.rejectValue("name", "error.artist.name.duplicate", e.getMessage()); // Thêm lỗi vào field 'name'
+            return "artist/create"; // Quay lại form với thông báo lỗi
+        } catch (Exception e) {
+            logger.error("Error saving artist: {}", e.getMessage(), e);
             bindingResult.reject("error.generic", "Đã có lỗi xảy ra khi lưu nghệ sĩ.");
-            System.err.println("Error saving artist: " + e.getMessage());
             return "artist/create";
         }
     }
 
-    // --- Hiển thị form sửa ---
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
+        logger.info("Displaying edit form for artist ID {}", id);
         Artist artist = artistService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Artist", "id", id));
         ArtistDTO artistDTO = new ArtistDTO(artist.getId(), artist.getName());
         model.addAttribute("artistDTO", artistDTO);
-        return "artist/edit"; // templates/artist/edit.html
+        return "artist/edit";
     }
 
-    // --- Xử lý cập nhật ---
     @PostMapping("/update")
     public String updateArtist(@Valid @ModelAttribute("artistDTO") ArtistDTO artistDTO,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
+            logger.warn("Validation errors in updateArtist form for ID {}.", artistDTO.getId());
             return "artist/edit";
         }
         try {
@@ -107,10 +119,15 @@ public class ArtistController {
             existingArtist.setName(artistDTO.getName());
             artistService.save(existingArtist);
             redirectAttributes.addFlashAttribute("successMessage", "Cập nhật nghệ sĩ thành công!");
+            logger.info("Artist updated successfully: {}", existingArtist.getName());
             return "redirect:/artists";
+        } catch (DuplicateNameException e) { // SỬA: Bắt DuplicateNameException
+            logger.warn("Failed to update artist ID {} due to duplicate name: {}", artistDTO.getId(), e.getMessage());
+            bindingResult.rejectValue("name", "error.artist.name.duplicate", e.getMessage());
+            return "artist/edit";
         } catch (Exception e) {
+            logger.error("Error updating artist ID {}: {}", artistDTO.getId(), e.getMessage(), e);
             bindingResult.reject("error.generic", "Đã có lỗi xảy ra khi cập nhật nghệ sĩ.");
-            System.err.println("Error updating artist: " + e.getMessage());
             return "artist/edit";
         }
     }
@@ -118,17 +135,20 @@ public class ArtistController {
     // --- Xử lý xóa ---
     @GetMapping("/delete/{id}")
     public String deleteArtist(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        logger.info("Attempting to delete artist ID {}", id);
         try {
             artistService.deleteById(id);
             redirectAttributes.addFlashAttribute("successMessage", "Xóa nghệ sĩ thành công!");
+            logger.info("Artist deleted successfully, ID {}", id);
         } catch (ResourceNotFoundException e) {
+            logger.warn("Failed to delete artist: ID {} not found.", id);
             redirectAttributes.addFlashAttribute("errorMessage", "Không tìm thấy nghệ sĩ để xóa!");
-        } catch (DeletionBlockedException | DataIntegrityViolationException e) { // Bắt cả 2 loại exception
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage()); // Lấy message từ service
-            System.err.println("Error deleting artist: " + e.getMessage());
-        } catch (Exception e) { // Bắt lỗi không mong muốn khác
+        } catch (DeletionBlockedException | DataIntegrityViolationException e) {
+            logger.warn("Failed to delete artist ID {}: {}", id, e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error deleting artist ID {}: {}", id, e.getMessage(), e);
             redirectAttributes.addFlashAttribute("errorMessage", "Đã có lỗi xảy ra khi xóa nghệ sĩ.");
-            System.err.println("Error deleting artist: " + e.getMessage());
         }
         return "redirect:/artists";
     }

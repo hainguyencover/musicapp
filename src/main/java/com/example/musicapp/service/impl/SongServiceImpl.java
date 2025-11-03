@@ -4,6 +4,7 @@ import com.example.musicapp.dto.SongDTO;
 import com.example.musicapp.entity.Artist;
 import com.example.musicapp.entity.Genre;
 import com.example.musicapp.entity.Song;
+import com.example.musicapp.exception.DuplicateNameException;
 import com.example.musicapp.exception.ResourceNotFoundException;
 import com.example.musicapp.repository.SongRepository;
 import com.example.musicapp.service.IArtistService;
@@ -59,6 +60,11 @@ public class SongServiceImpl implements ISongService {
             throw new IllegalArgumentException("File nhạc không được để trống khi tạo mới.");
         }
 
+        // KIỂM TRA TRÙNG TÊN BÀI HÁT (Tên + Nghệ sĩ)
+        if (songRepository.existsByNameIgnoreCaseAndArtistId(songDTO.getName(), songDTO.getArtistId())) {
+            throw new DuplicateNameException("Bài hát '" + songDTO.getName() + "' của nghệ sĩ này đã tồn tại.");
+        }
+
         // 2. Lưu file
         String storedFilename = fileStorageService.store(songFile);
 
@@ -85,6 +91,11 @@ public class SongServiceImpl implements ISongService {
         // 1. Lấy Song hiện tại từ DB
         Song existingSong = songRepository.findById(songDTO.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Song", "id", songDTO.getId()));
+
+        // KIỂM TRA TRÙNG TÊN BÀI HÁT KHI UPDATE
+        if (songRepository.existsByNameIgnoreCaseAndArtistIdAndIdNot(songDTO.getName(), songDTO.getArtistId(), songDTO.getId())) {
+            throw new DuplicateNameException("Bài hát '" + songDTO.getName() + "' của nghệ sĩ này đã tồn tại.");
+        }
 
         // 2. Xử lý file nếu có file mới được upload
         if (songFile != null && !songFile.isEmpty()) {

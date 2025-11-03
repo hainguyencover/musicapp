@@ -6,15 +6,15 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ArtistRepository extends JpaRepository<Artist, Integer> {
-    // Spring Data JPA sẽ tự động tạo ra các phương thức CRUD cơ bản:
-    // - save(Artist entity)
-    // - findById(Long id)
-    // - findAll()
-    // - deleteById(Long id)
-    // - ...
+public interface ArtistRepository extends JpaRepository<Artist, Long> {
+/**
+     * Kiểm tra tên tồn tại (không phân biệt hoa thường) - Dùng khi tạo mới.
+     */
+    boolean existsByNameIgnoreCase(String name);
 
-    // Bạn có thể thêm các phương thức truy vấn tùy chỉnh ở đây nếu cần,
-    // ví dụ: tìm Artist theo tên
-    // Optional<Artist> findByName(String name);
+    /**
+     * Kiểm tra tên tồn tại (không phân biệt hoa thường) VÀ ID khác với ID hiện tại
+     * - Dùng khi cập nhật.
+     */
+    boolean existsByNameIgnoreCaseAndIdNot(String name, Long id);
 }

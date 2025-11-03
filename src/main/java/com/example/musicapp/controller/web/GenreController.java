@@ -3,9 +3,12 @@ package com.example.musicapp.controller.web;
 import com.example.musicapp.dto.GenreDTO;
 import com.example.musicapp.entity.Genre;
 import com.example.musicapp.exception.DeletionBlockedException;
+import com.example.musicapp.exception.DuplicateNameException;
 import com.example.musicapp.exception.ResourceNotFoundException;
 import com.example.musicapp.service.IGenreService;
 import jakarta.validation.Valid;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -26,6 +29,9 @@ import java.util.stream.Collectors;
 public class GenreController {
     private final IGenreService genreService;
 
+    // THÊM LOGGER
+    private static final Logger logger = LoggerFactory.getLogger(GenreController.class);
+
     public GenreController(IGenreService genreService) {
         this.genreService = genreService;
     }
@@ -43,31 +49,31 @@ public class GenreController {
     @GetMapping
     public String listGenres(Model model,
                              @PageableDefault(page = 0, size = 10, sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
+        logger.debug("Fetching genre list page {}", pageable.getPageNumber());
         Page<Genre> genrePageEntity = genreService.findAll(pageable);
 
-        // Map Page<Genre> sang Page<GenreDTO>
         List<GenreDTO> dtoList = genrePageEntity.getContent().stream()
                 .map(genre -> new GenreDTO(genre.getId(), genre.getName()))
                 .collect(Collectors.toList());
         Page<GenreDTO> genrePageDTO = new PageImpl<>(dtoList, pageable, genrePageEntity.getTotalElements());
 
-        model.addAttribute("genrePage", genrePageDTO); // Gửi Page DTO
+        model.addAttribute("genrePage", genrePageDTO);
         return "genre/list";
     }
 
-    // --- Hiển thị form tạo mới ---
     @GetMapping("/create")
     public String showCreateForm(Model model) {
+        logger.info("Displaying create genre form");
         model.addAttribute("genreDTO", new GenreDTO());
-        return "genre/create"; // templates/genre/create.html
+        return "genre/create";
     }
 
-    // --- Xử lý tạo mới ---
     @PostMapping("/create")
     public String createGenre(@Valid @ModelAttribute("genreDTO") GenreDTO genreDTO,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
+            logger.warn("Validation errors in createGenre form.");
             return "genre/create";
         }
         try {
@@ -75,30 +81,35 @@ public class GenreController {
             genre.setName(genreDTO.getName());
             genreService.save(genre);
             redirectAttributes.addFlashAttribute("successMessage", "Thêm thể loại thành công!");
+            logger.info("Genre created successfully: {}", genre.getName());
             return "redirect:/genres";
+        } catch (DuplicateNameException e) { // SỬA: Bắt DuplicateNameException
+            logger.warn("Failed to create genre due to duplicate name: {}", e.getMessage());
+            bindingResult.rejectValue("name", "error.genre.name.duplicate", e.getMessage());
+            return "genre/create";
         } catch (Exception e) {
+            logger.error("Error saving genre: {}", e.getMessage(), e);
             bindingResult.reject("error.generic", "Đã có lỗi xảy ra khi lưu thể loại.");
-            System.err.println("Error saving genre: " + e.getMessage());
             return "genre/create";
         }
     }
 
-    // --- Hiển thị form sửa ---
     @GetMapping("/edit/{id}")
     public String showEditForm(@PathVariable Long id, Model model) {
+        logger.info("Displaying edit form for genre ID {}", id);
         Genre genre = genreService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Genre", "id", id));
         GenreDTO genreDTO = new GenreDTO(genre.getId(), genre.getName());
         model.addAttribute("genreDTO", genreDTO);
-        return "genre/edit"; // templates/genre/edit.html
+        return "genre/edit";
     }
 
-    // --- Xử lý cập nhật ---
     @PostMapping("/update")
     public String updateGenre(@Valid @ModelAttribute("genreDTO") GenreDTO genreDTO,
                               BindingResult bindingResult,
                               RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
+            logger.warn("Validation errors in updateGenre form for ID {}.", genreDTO.getId());
             return "genre/edit";
         }
         try {
@@ -107,28 +118,35 @@ public class GenreController {
             existingGenre.setName(genreDTO.getName());
             genreService.save(existingGenre);
             redirectAttributes.addFlashAttribute("successMessage", "Cập nhật thể loại thành công!");
+            logger.info("Genre updated successfully: {}", existingGenre.getName());
             return "redirect:/genres";
+        } catch (DuplicateNameException e) { // SỬA: Bắt DuplicateNameException
+            logger.warn("Failed to update genre ID {} due to duplicate name: {}", genreDTO.getId(), e.getMessage());
+            bindingResult.rejectValue("name", "error.genre.name.duplicate", e.getMessage());
+            return "genre/edit";
         } catch (Exception e) {
+            logger.error("Error updating genre ID {}: {}", genreDTO.getId(), e.getMessage(), e);
             bindingResult.reject("error.generic", "Đã có lỗi xảy ra khi cập nhật thể loại.");
-            System.err.println("Error updating genre: " + e.getMessage());
             return "genre/edit";
         }
     }
 
-    // --- Xử lý xóa ---
     @GetMapping("/delete/{id}")
     public String deleteGenre(@PathVariable Long id, RedirectAttributes redirectAttributes) {
+        logger.info("Attempting to delete genre ID {}", id);
         try {
             genreService.deleteById(id);
             redirectAttributes.addFlashAttribute("successMessage", "Xóa thể loại thành công!");
+            logger.info("Genre deleted successfully, ID {}", id);
         } catch (ResourceNotFoundException e) {
+            logger.warn("Failed to delete genre: ID {} not found.", id);
             redirectAttributes.addFlashAttribute("errorMessage", "Không tìm thấy thể loại để xóa!");
-        } catch (DeletionBlockedException | DataIntegrityViolationException e) { // Bắt cả 2 loại exception
-            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage()); // Lấy message từ service
-            System.err.println("Error deleting genre: " + e.getMessage());
-        } catch (Exception e) { // Bắt lỗi không mong muốn khác
+        } catch (DeletionBlockedException | DataIntegrityViolationException e) {
+            logger.warn("Failed to delete genre ID {}: {}", id, e.getMessage());
+            redirectAttributes.addFlashAttribute("errorMessage", e.getMessage());
+        } catch (Exception e) {
+            logger.error("Error deleting genre ID {}: {}", id, e.getMessage(), e);
             redirectAttributes.addFlashAttribute("errorMessage", "Đã có lỗi xảy ra khi xóa thể loại.");
-            System.err.println("Error deleting genre: " + e.getMessage());
         }
         return "redirect:/genres";
     }

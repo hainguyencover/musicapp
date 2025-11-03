@@ -3,6 +3,7 @@ package com.example.musicapp.service.impl;
 import com.example.musicapp.entity.Artist;
 import com.example.musicapp.entity.Genre;
 import com.example.musicapp.exception.DeletionBlockedException;
+import com.example.musicapp.exception.DuplicateNameException;
 import com.example.musicapp.repository.ArtistRepository;
 import com.example.musicapp.repository.SongRepository;
 import com.example.musicapp.service.IArtistService;
@@ -37,7 +38,7 @@ public class ArtistServiceImpl implements IArtistService {
 
     @Override
     public Optional<Artist> findById(Long id) {
-        return artistRepository.findById(Math.toIntExact(id));
+        return artistRepository.findById(id);
     }
 
     @Override
@@ -45,6 +46,19 @@ public class ArtistServiceImpl implements IArtistService {
     public Artist save(Artist artist) {
         // Có thể thêm logic kiểm tra nghiệp vụ ở đây trước khi lưu
         // Ví dụ: kiểm tra tên nghệ sĩ có hợp lệ không, có trùng không,...
+        boolean nameExists;
+        if (artist.getId() == null) {
+            // Trường hợp TẠO MỚI
+            nameExists = artistRepository.existsByNameIgnoreCase(artist.getName());
+        } else {
+            // Trường hợp CẬP NHẬT
+            // Kiểm tra xem có nghệ sĩ KHÁC có tên trùng không
+            nameExists = artistRepository.existsByNameIgnoreCaseAndIdNot(artist.getName(), artist.getId());
+        }
+
+        if (nameExists) {
+            throw new DuplicateNameException("Tên nghệ sĩ '" + artist.getName() + "' đã tồn tại.");
+        }
         return artistRepository.save(artist);
     }
 
@@ -53,11 +67,9 @@ public class ArtistServiceImpl implements IArtistService {
     public void deleteById(Long id) {
         // Kiểm tra xem có bài hát nào liên kết không
         if (songRepository.existsByArtistId(id)) {
-            // Nếu có, ném exception thay vì xóa
             throw new DeletionBlockedException("Không thể xóa nghệ sĩ này vì có bài hát đang liên kết.");
-            // Hoặc: throw new DataIntegrityViolationException("Cannot delete Artist with associated Songs.");
         }
         // Chỉ xóa nếu không có bài hát nào liên kết
-        artistRepository.deleteById(Math.toIntExact(id));
+        artistRepository.deleteById(id);
     }
 }
