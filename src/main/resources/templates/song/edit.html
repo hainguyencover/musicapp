@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head th:replace="~{layout/main :: head('Chỉnh sửa Bài hát')}"><title>
+
+</title></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1>Chỉnh sửa bài hát</h1>
+
+    <div th:if="${#fields.hasGlobalErrors()}" class="error-message">
+        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+    </div>
+
+    <form th:action="@{/songs/update}" th:object="${songDTO}" method="post" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}"/>
+
+        <div>
+            <label for="name">Tên bài hát:</label>
+            <input type="text" id="name" th:field="*{name}"/>
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label for="artistId">Nghệ sĩ:</label>
+            <select id="artistId" th:field="*{artistId}">
+                <option value="">-- Chọn nghệ sĩ --</option>
+                <option th:each="art : ${artists}"
+                        th:value="${art.id}"
+                        th:text="${art.name}"
+                        th:selected="${art.id == songDTO.artistId}"></option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('artistId')}" th:errors="*{artistId}"></span>
+        </div>
+        <div>
+            <label for="genreId">Thể loại:</label>
+            <select id="genreId" th:field="*{genreId}">
+                <option value="">-- Chọn thể loại --</option>
+                <option th:each="gen : ${genres}"
+                        th:value="${gen.id}"
+                        th:text="${gen.name}"
+                        th:selected="${gen.id == songDTO.genreId}"></option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('genreId')}" th:errors="*{genreId}"></span>
+        </div>
+        <div>
+            <label>File nhạc hiện tại:</label>
+            <span th:text="${songDTO.filePath != null ? songDTO.filePath : 'Chưa có file'}"></span>
+            <audio controls th:if="${songDTO.filePath != null}"
+                   style="vertical-align: middle; margin-left: 10px; max-width: 250px;">
+                <source th:src="@{/songs/play/{filename}(filename=${songDTO.filePath})}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div>
+            <label for="songFile">Chọn file nhạc mới (để thay thế):</label>
+            <input type="file" id="songFile" name="songFile" accept="audio/*"/>
+        </div>
+        <div>
+            <button type="submit">Cập nhật</button>
+            <a th:href="@{/songs}">Hủy</a>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

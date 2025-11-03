@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/main :: head('Thêm Nghệ sĩ mới')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1>Thêm Nghệ sĩ mới</h1>
+
+    <div th:if="${#fields.hasGlobalErrors()}" class="error-message">
+        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+    </div>
+
+    <form th:action="@{/artists/create}" th:object="${artistDTO}" method="post">
+        <div>
+            <label for="name">Tên Nghệ sĩ:</label>
+            <input type="text" id="name" th:field="*{name}" />
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <button type="submit">Lưu Nghệ sĩ</button>
+            <a th:href="@{/artists}">Hủy</a>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

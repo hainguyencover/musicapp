@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:fragment="head(pageTitle)"> <meta charset="UTF-8">
+  <title th:text="${pageTitle} + ' - Music App'">Tiêu đề mặc định</title>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+</head>
+<body>
+
+<header th:fragment="header"> <nav>
+  <a th:href="@{/}">Trang chủ</a> |
+  <a th:href="@{/songs}">Quản lý Bài hát</a> |
+  <a th:href="@{/artists}">Quản lý Nghệ sĩ</a> |
+  <a th:href="@{/genres}">Quản lý Thể loại</a>
+</nav>
+  <hr/>
+</header>
+
+<div class="container">
+</div>
+
+<footer th:fragment="footer"> <hr/>
+  <p>&copy; 2025 Music App - Developed by [Tên của bạn]</p>
+</footer>
+
+</body>
+</html>

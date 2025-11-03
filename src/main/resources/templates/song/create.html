@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head th:replace="~{layout/main :: head('Thêm Bài hát mới')}"><title>
+
+</title></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1>Thêm bài hát mới</h1>
+
+    <div th:if="${#fields.hasGlobalErrors()}" class="error-message">
+        <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
+    </div>
+
+    <form th:action="@{/songs/create}" th:object="${songDTO}" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="name">Tên bài hát:</label>
+            <input type="text" id="name" th:field="*{name}"/>
+            <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+        </div>
+        <div>
+            <label for="artistId">Nghệ sĩ:</label>
+            <select id="artistId" th:field="*{artistId}">
+                <option value="">-- Chọn nghệ sĩ --</option>
+                <option th:each="artist : ${artists}" th:value="${artist.id}" th:text="${artist.name}"></option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('artistId')}" th:errors="*{artistId}"></span>
+        </div>
+        <div>
+            <label for="genreId">Thể loại:</label>
+            <select id="genreId" th:field="*{genreId}">
+                <option value="">-- Chọn thể loại --</option>
+                <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.name}"></option>
+            </select>
+            <span class="error" th:if="${#fields.hasErrors('genreId')}" th:errors="*{genreId}"></span>
+        </div>
+        <div>
+            <label for="songFile">File nhạc:</label>
+            <input type="file" id="songFile" name="songFile" accept="audio/*"/>
+            <span class="error" th:if="${#fields.hasErrors('songFile')}" th:errors="*{songFile}"></span>
+        </div>
+        <div>
+            <button type="submit">Lưu bài hát</button>
+            <a th:href="@{/songs}">Hủy</a>
+        </div>
+    </form>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

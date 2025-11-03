@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/main :: head('Danh sách Bài hát')}"></head>
+<body>
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1>Danh sách bài hát</h1>
+
+    <div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+
+    <p><a th:href="@{/songs/create}">Thêm bài hát mới</a></p>
+
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Tên bài hát</th>
+            <th>Nghệ sĩ</th>
+            <th>Thể loại</th>
+            <th>Nghe</th>
+            <th>Hành động</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="song : ${songPage.content}">
+            <td th:text="${song.id}"></td>
+            <td th:text="${song.name}"></td>
+            <td th:text="${song.artist?.name}"></td>
+            <td th:text="${song.genre?.name}"></td>
+            <td>
+                <audio controls th:if="${song.filePath != null}" style="width: 250px;">
+                    <source th:src="@{/songs/play/{filename}(filename=${song.filePath})}" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </td>
+            <td>
+                <a th:href="@{/songs/edit/{id}(id=${song.id})}">Sửa</a> |
+                <a th:href="@{/songs/delete/{id}(id=${song.id})}"
+                   onclick="return confirm('Bạn có chắc chắn muốn xóa bài hát này?')">Xóa</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${songPage.totalPages > 0}" class="pagination" style="margin-top: 20px;">
+        <span th:text="|Trang ${songPage.number + 1} / ${songPage.totalPages}|"></span>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item" th:classappend="${songPage.first} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/songs(size=${songPage.size}, page=0, sort=${#request.getParameter('sort')})}">&laquo;
+                        Đầu</a>
+                </li>
+
+                <li class="page-item" th:classappend="${songPage.first} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/songs(size=${songPage.size}, page=${songPage.number - 1}, sort=${#request.getParameter('sort')})}"
+                       th:if="${!songPage.first}">&lsaquo; Trước</a>
+                    <span class="page-link" th:if="${songPage.first}">&lsaquo; Trước</span>
+                </li>
+
+                <th:block th:with="
+                    currentPage=${songPage.number},
+                    totalPages=${songPage.totalPages},
+                    startPage=${T(java.lang.Math).max(0, currentPage - 2)},
+                    endPage=${T(java.lang.Math).min(totalPages - 1, currentPage + 2)}">
+                    <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                        th:classappend="${i == currentPage} ? 'active'">
+                        <a class="page-link"
+                           th:href="@{/songs(size=${songPage.size}, page=${i}, sort=${#request.getParameter('sort')})}"
+                           th:text="${i + 1}"></a>
+                    </li>
+                </th:block>
+
+                <li class="page-item" th:classappend="${songPage.last} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/songs(size=${songPage.size}, page=${songPage.number + 1}, sort=${#request.getParameter('sort')})}"
+                       th:if="${!songPage.last}">Sau &rsaquo;</a>
+                    <span class="page-link" th:if="${songPage.last}">Sau &rsaquo;</span>
+                </li>
+
+                <li class="page-item" th:classappend="${songPage.last} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/songs(size=${songPage.size}, page=${songPage.totalPages - 1}, sort=${#request.getParameter('sort')})}">Cuối
+                        &raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<footer th:replace="~{layout/main :: footer}"></footer>
+</body>
+</html>
