@@ -43,8 +43,14 @@ public class SongServiceImpl implements ISongService {
 //    }
 
     @Override
-    public Page<Song> findAll(Pageable pageable) { // Implement phương thức mới
-        return songRepository.findAll(pageable);
+    public Page<Song> findAll(String keyword, Pageable pageable) { // Implement phương thức mới
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // Nếu có keyword, gọi phương thức tìm kiếm
+            return songRepository.findByNameContainingIgnoreCase(keyword, pageable);
+        } else {
+            // Nếu không có keyword, gọi findAll mặc định
+            return songRepository.findAll(pageable);
+        }
     }
 
     @Override

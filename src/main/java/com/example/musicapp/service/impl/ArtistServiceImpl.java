@@ -32,8 +32,14 @@ public class ArtistServiceImpl implements IArtistService {
     }
 
     @Override
-    public Page<Artist> findAll(Pageable pageable) { // Implement phương thức mới
-        return artistRepository.findAll(pageable);
+    public Page<Artist> findAll(String keyword, Pageable pageable) { // Implement phương thức mới
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // Nếu có keyword, gọi phương thức tìm kiếm
+            return artistRepository.findByNameContainingIgnoreCase(keyword, pageable);
+        } else {
+            // Nếu không có keyword, gọi findAll mặc định
+            return artistRepository.findAll(pageable);
+        }
     }
 
     @Override

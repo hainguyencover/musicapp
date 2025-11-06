@@ -62,10 +62,12 @@ public class SongController {
     // --- Hiển thị danh sách ---
     @GetMapping
     public String listSongs(Model model,
-                            @PageableDefault(page = 0, size = 5, sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
+                            @PageableDefault(page = 0, size = 5, sort = "name", direction = Sort.Direction.ASC) Pageable pageable,
+                            @RequestParam(required = false, value = "keyword") String keyword) {
         logger.debug("Fetching song list for page: {}, size: {}, sort: {}", pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
-        Page<Song> songPage = songService.findAll(pageable);
+        Page<Song> songPage = songService.findAll(keyword, pageable);
         model.addAttribute("songPage", songPage);
+        model.addAttribute("keyword", keyword);
         logger.info("Displayed song list page {}", pageable.getPageNumber() + 1);
         return "song/list";
     }

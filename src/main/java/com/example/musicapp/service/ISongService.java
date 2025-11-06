@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ISongService {
 //    List<Song> findAll(); // Hoặc List<SongDTO>
 
-    Page<Song> findAll(Pageable pageable); // Phương thức mới cho phân trang
+    Page<Song> findAll(String keyword, Pageable pageable); // Phương thức mới cho phân trang
 
     Optional<Song> findById(Long id); // Hoặc Optional<SongDTO>
 

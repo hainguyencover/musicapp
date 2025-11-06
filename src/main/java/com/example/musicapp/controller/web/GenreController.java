@@ -48,9 +48,10 @@ public class GenreController {
 
     @GetMapping
     public String listGenres(Model model,
-                             @PageableDefault(page = 0, size = 10, sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
+                             @PageableDefault(page = 0, size = 5, sort = "name", direction = Sort.Direction.ASC) Pageable pageable,
+                             @RequestParam(required = false, value = "keyword") String keyword) {
         logger.debug("Fetching genre list page {}", pageable.getPageNumber());
-        Page<Genre> genrePageEntity = genreService.findAll(pageable);
+        Page<Genre> genrePageEntity = genreService.findAll(keyword, pageable);
 
         List<GenreDTO> dtoList = genrePageEntity.getContent().stream()
                 .map(genre -> new GenreDTO(genre.getId(), genre.getName()))
@@ -58,6 +59,7 @@ public class GenreController {
         Page<GenreDTO> genrePageDTO = new PageImpl<>(dtoList, pageable, genrePageEntity.getTotalElements());
 
         model.addAttribute("genrePage", genrePageDTO);
+        model.addAttribute("keyword", keyword);
         return "genre/list";
     }
 

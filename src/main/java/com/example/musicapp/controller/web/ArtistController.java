@@ -60,16 +60,26 @@ public class ArtistController {
 
     @GetMapping
     public String listArtists(Model model,
-                              @PageableDefault(page = 0, size = 10, sort = "name", direction = Sort.Direction.ASC) Pageable pageable) {
+                              @PageableDefault(page = 0, size = 5, sort = "name", direction = Sort.Direction.ASC)
+                              Pageable pageable,
+                              @RequestParam(value = "keyword", required = false) String keyword) {
         logger.debug("Fetching artist list page {}", pageable.getPageNumber());
-        Page<Artist> artistPageEntity = artistService.findAll(pageable);
+        Page<Artist> artistPageEntity = artistService.findAll(keyword, pageable);
 
         List<ArtistDTO> dtoList = artistPageEntity.getContent().stream()
-                .map(artist -> new ArtistDTO(artist.getId(), artist.getName()))
+                .map(artist -> {
+                    ArtistDTO dto = new ArtistDTO();
+                    dto.setId(artist.getId());
+                    dto.setName(artist.getName());
+                    dto.setAvatarPath(artist.getAvatarPath());
+                    dto.setBio(artist.getBio());
+                    return dto;
+                })
                 .collect(Collectors.toList());
         Page<ArtistDTO> artistPageDTO = new PageImpl<>(dtoList, pageable, artistPageEntity.getTotalElements());
 
         model.addAttribute("artistPage", artistPageDTO);
+        model.addAttribute("keyword", keyword);
         return "artist/list";
     }
 

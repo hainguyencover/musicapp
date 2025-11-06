@@ -11,23 +11,43 @@
     <div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
     <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
 
-    <p><a th:href="@{/artists/create}">Thêm nghệ sĩ mới</a></p>
+    <!-- TOP ACTION BAR: Button + Search Form -->
+    <p><a th:href="@{/artists/create}">+ Thêm nghệ sĩ</a></p>
+
+    <form th:action="@{/artists}" method="get" class="mb-3">
+        <div class="input-group">
+            <label>
+                <input type="text" class="form-control" name="keyword" th:value="${keyword}"
+                       placeholder="Tìm kiếm theo tên nghệ sĩ...">
+            </label>
+            <button class="btn btn-primary" type="submit">Tìm kiếm</button>
+            <a th:href="@{/artists}" class="btn btn-secondary">Xóa bộ lọc</a>
+        </div>
+    </form>
 
     <table>
         <thead>
         <tr>
-            <th>ID</th>
+            <th style="width: 80px;">ID</th>
+            <th style="width: 100px;">Ảnh đại diện</th>
             <th>Tên Nghệ sĩ</th>
-            <th>Hành động</th>
+            <th style="width: 180px; text-align: center;">Hành động</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="artist : ${artistPage.content}">
             <td th:text="${artist.id}"></td>
-            <td th:text="${artist.name}"></td>
             <td>
+                <img th:if="${artist.avatarPath != null and artist.avatarPath != ''}"
+                     th:src="@{/artists/photo/{filename}(filename=${artist.avatarPath})}"
+                     alt="Avatar">
+                <span th:if="${artist.avatarPath == null or artist.avatarPath == ''}"
+                      style="font-style: italic; color: #a0aec0; font-size: 0.9rem;">N/A</span>
+            </td>
+            <td th:text="${artist.name}" style="font-weight: 500; color: #2d3748;"></td>
+            <td style="text-align: center;">
                 <a th:href="@{/artists/edit/{id}(id=${artist.id})}">Sửa</a>
-                |
+                <span style="color: #cbd5e0; margin: 0 0.25rem;">|</span>
                 <a th:href="@{/artists/delete/{id}(id=${artist.id})}"
                    onclick="return confirm('Bạn có chắc chắn muốn xóa nghệ sĩ này? Việc này có thể ảnh hưởng đến các bài hát liên quan.')">Xóa</a>
             </td>
@@ -35,21 +55,28 @@
         </tbody>
     </table>
 
-    <div th:if="${artistPage.totalPages > 0}" class="pagination" style="margin-top: 20px;">
+    <!-- PAGINATION -->
+    <div th:if="${artistPage.totalPages > 0}" class="pagination">
         <span th:text="|Trang ${artistPage.number + 1} / ${artistPage.totalPages}|"></span>
         <nav aria-label="Page navigation">
             <ul class="pagination">
+                <!-- First Page -->
                 <li class="page-item" th:classappend="${artistPage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=0, sort=${param.sort})}">&laquo;
-                        Đầu</a>
+                       th:href="@{/artists(size=${artistPage.size}, page=0, sort=${param.sort}, keyword=${keyword})}"
+                       title="Trang đầu">&laquo;</a>
                 </li>
+
+                <!-- Previous Page -->
                 <li class="page-item" th:classappend="${artistPage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number - 1}, sort=${param.sort})}"
-                       th:if="${!artistPage.first}">&lsaquo; Trước</a>
-                    <span class="page-link" th:if="${artistPage.first}">&lsaquo; Trước</span>
+                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number - 1}, sort=${param.sort}, keyword=${keyword})}"
+                       th:if="${!artistPage.first}"
+                       title="Trang trước">&lsaquo;</a>
+                    <span class="page-link" th:if="${artistPage.first}" title="Trang trước">&lsaquo;</span>
                 </li>
+
+                <!-- Page Numbers -->
                 <th:block th:with="
                     currentPage=${artistPage.number},
                     totalPages=${artistPage.totalPages},
@@ -58,20 +85,25 @@
                     <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
                         th:classappend="${i == currentPage} ? 'active'">
                         <a class="page-link"
-                           th:href="@{/artists(size=${artistPage.size}, page=${i}, sort=${param.sort})}"
+                           th:href="@{/artists(size=${artistPage.size}, page=${i}, sort=${param.sort}, keyword=${keyword})}"
                            th:text="${i + 1}"></a>
                     </li>
                 </th:block>
+
+                <!-- Next Page -->
                 <li class="page-item" th:classappend="${artistPage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number + 1}, sort=${param.sort})}"
-                       th:if="${!artistPage.last}">Sau &rsaquo;</a>
-                    <span class="page-link" th:if="${artistPage.last}">Sau &rsaquo;</span>
+                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number + 1}, sort=${param.sort}, keyword=${keyword})}"
+                       th:if="${!artistPage.last}"
+                       title="Trang sau">&rsaquo;</a>
+                    <span class="page-link" th:if="${artistPage.last}" title="Trang sau">&rsaquo;</span>
                 </li>
+
+                <!-- Last Page -->
                 <li class="page-item" th:classappend="${artistPage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.totalPages - 1}, sort=${param.sort})}">Cuối
-                        &raquo;</a>
+                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.totalPages - 1}, sort=${param.sort}, keyword=${keyword})}"
+                       title="Trang cuối">&raquo;</a>
                 </li>
             </ul>
         </nav>

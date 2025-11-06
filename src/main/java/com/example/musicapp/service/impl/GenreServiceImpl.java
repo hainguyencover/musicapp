@@ -31,8 +31,14 @@ public class GenreServiceImpl implements IGenreService {
     }
 
     @Override
-    public Page<Genre> findAll(Pageable pageable) { // Implement phương thức mới
-        return genreRepository.findAll(pageable);
+    public Page<Genre> findAll(String keyword, Pageable pageable) { // Implement phương thức mới
+        if (keyword != null && !keyword.trim().isEmpty()) {
+            // Nếu có keyword, gọi phương thức tìm kiếm
+            return genreRepository.findByNameContainingIgnoreCase(keyword, pageable);
+        } else {
+            // Nếu không có keyword, gọi findAll mặc định
+            return genreRepository.findAll(pageable);
+        }
     }
 
     @Override

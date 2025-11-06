@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface IGenreService {
     List<Genre> findAll();
 
-    Page<Genre> findAll(Pageable pageable);
+    Page<Genre> findAll(String keyword, Pageable pageable);
 
     Optional<Genre> findById(Long id);
 

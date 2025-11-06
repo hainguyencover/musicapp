@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface IArtistService {
     List<Artist> findAll();
 
-    Page<Artist> findAll(Pageable pageable);
+    Page<Artist> findAll(String keyword, Pageable pageable);
 
     Optional<Artist> findById(Long id);
 
