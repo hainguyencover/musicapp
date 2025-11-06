@@ -64,4 +64,13 @@ public class GlobalExceptionHandler {
         // Có thể dùng chung trang 500 hoặc tạo trang lỗi riêng "error/conflict"
         return "error/500";
     }
+
+    @ExceptionHandler(DuplicateNameException.class)
+    @ResponseStatus(HttpStatus.CONFLICT) // Status 409 Conflict
+    public String handleDuplicateNameException(DuplicateNameException ex, Model model) {
+        System.err.println("DuplicateNameException caught: " + ex.getMessage());
+        model.addAttribute("errorMessage", ex.getMessage());
+        // Trả về trang 500, nhưng có thể tạo trang riêng cho conflict nếu cần
+        return "error/500";
+    }
 }

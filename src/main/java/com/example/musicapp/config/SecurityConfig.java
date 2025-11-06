@@ -44,8 +44,8 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        // Cho phép truy cập công khai CSS, JS, trang chủ, play nhạc, trang lỗi
-                        .requestMatchers("/css/**", "/js/**", "/", "/songs/play/**", "/error/**").permitAll()
+                        // Cho phép truy cập công khai CSS, JS, trang chủ, play nhạc, ảnh nghệ sĩ, trang lỗi
+                        .requestMatchers("/css/**", "/js/**", "/", "/songs/play/**", "/artists/photo/**", "/error/**").permitAll()
 
                         // Yêu cầu ADMIN cho các chức năng xóa (quy tắc này vẫn đúng)
                         .requestMatchers("/songs/delete/**", "/artists/delete/**", "/genres/delete/**").hasRole("ADMIN")

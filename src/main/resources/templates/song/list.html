@@ -50,13 +50,13 @@
             <ul class="pagination">
                 <li class="page-item" th:classappend="${songPage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/songs(size=${songPage.size}, page=0, sort=${#request.getParameter('sort')})}">&laquo;
+                       th:href="@{/songs(size=${songPage.size}, page=0, sort=${param.sort})}">&laquo;
                         Đầu</a>
                 </li>
 
                 <li class="page-item" th:classappend="${songPage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/songs(size=${songPage.size}, page=${songPage.number - 1}, sort=${#request.getParameter('sort')})}"
+                       th:href="@{/songs(size=${songPage.size}, page=${songPage.number - 1}, sort=${param.sort})}"
                        th:if="${!songPage.first}">&lsaquo; Trước</a>
                     <span class="page-link" th:if="${songPage.first}">&lsaquo; Trước</span>
                 </li>
@@ -69,21 +69,21 @@
                     <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
                         th:classappend="${i == currentPage} ? 'active'">
                         <a class="page-link"
-                           th:href="@{/songs(size=${songPage.size}, page=${i}, sort=${#request.getParameter('sort')})}"
+                           th:href="@{/songs(size=${songPage.size}, page=${i}, sort=${param.sort})}"
                            th:text="${i + 1}"></a>
                     </li>
                 </th:block>
 
                 <li class="page-item" th:classappend="${songPage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/songs(size=${songPage.size}, page=${songPage.number + 1}, sort=${#request.getParameter('sort')})}"
+                       th:href="@{/songs(size=${songPage.size}, page=${songPage.number + 1}, sort=${param.sort})}"
                        th:if="${!songPage.last}">Sau &rsaquo;</a>
                     <span class="page-link" th:if="${songPage.last}">Sau &rsaquo;</span>
                 </li>
 
                 <li class="page-item" th:classappend="${songPage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/songs(size=${songPage.size}, page=${songPage.totalPages - 1}, sort=${#request.getParameter('sort')})}">Cuối
+                       th:href="@{/songs(size=${songPage.size}, page=${songPage.totalPages - 1}, sort=${param.sort})}">Cuối
                         &raquo;</a>
                 </li>
             </ul>

@@ -41,12 +41,12 @@
             <ul class="pagination">
                 <li class="page-item" th:classappend="${artistPage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=0, sort=${#request.getParameter('sort')})}">&laquo;
+                       th:href="@{/artists(size=${artistPage.size}, page=0, sort=${param.sort})}">&laquo;
                         Đầu</a>
                 </li>
                 <li class="page-item" th:classappend="${artistPage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number - 1}, sort=${#request.getParameter('sort')})}"
+                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number - 1}, sort=${param.sort})}"
                        th:if="${!artistPage.first}">&lsaquo; Trước</a>
                     <span class="page-link" th:if="${artistPage.first}">&lsaquo; Trước</span>
                 </li>
@@ -58,19 +58,19 @@
                     <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
                         th:classappend="${i == currentPage} ? 'active'">
                         <a class="page-link"
-                           th:href="@{/artists(size=${artistPage.size}, page=${i}, sort=${#request.getParameter('sort')})}"
+                           th:href="@{/artists(size=${artistPage.size}, page=${i}, sort=${param.sort})}"
                            th:text="${i + 1}"></a>
                     </li>
                 </th:block>
                 <li class="page-item" th:classappend="${artistPage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number + 1}, sort=${#request.getParameter('sort')})}"
+                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.number + 1}, sort=${param.sort})}"
                        th:if="${!artistPage.last}">Sau &rsaquo;</a>
                     <span class="page-link" th:if="${artistPage.last}">Sau &rsaquo;</span>
                 </li>
                 <li class="page-item" th:classappend="${artistPage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.totalPages - 1}, sort=${#request.getParameter('sort')})}">Cuối
+                       th:href="@{/artists(size=${artistPage.size}, page=${artistPage.totalPages - 1}, sort=${param.sort})}">Cuối
                         &raquo;</a>
                 </li>
             </ul>

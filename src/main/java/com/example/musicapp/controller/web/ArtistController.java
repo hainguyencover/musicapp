@@ -6,6 +6,9 @@ import com.example.musicapp.exception.DeletionBlockedException;
 import com.example.musicapp.exception.DuplicateNameException;
 import com.example.musicapp.exception.ResourceNotFoundException;
 import com.example.musicapp.service.IArtistService;
+import com.example.musicapp.service.storage.IFileStorageService;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.Resource;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +23,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.util.unit.DataSize;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,12 +35,17 @@ import java.util.stream.Collectors;
 @RequestMapping("/artists")
 public class ArtistController {
     private final IArtistService artistService;
+    private final IFileStorageService fileStorageService;
+
+    @Value("${spring.servlet.multipart.max-file-size}")
+    private String maxFileSize;
 
     // THÊM LOGGER
     private static final Logger logger = LoggerFactory.getLogger(ArtistController.class);
 
-    public ArtistController(IArtistService artistService) {
+    public ArtistController(IArtistService artistService, IFileStorageService fileStorageService) {
         this.artistService = artistService;
+        this.fileStorageService = fileStorageService;
     }
 
     // --- Hiển thị danh sách ---
@@ -72,6 +84,7 @@ public class ArtistController {
     @PostMapping("/create")
     public String createArtist(@Valid @ModelAttribute("artistDTO") ArtistDTO artistDTO,
                                BindingResult bindingResult,
+                               @RequestParam(value = "avatarFile", required = false) MultipartFile avatarFile,
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.warn("Validation errors in createArtist form.");
@@ -80,6 +93,31 @@ public class ArtistController {
         try {
             Artist artist = new Artist();
             artist.setName(artistDTO.getName());
+            artist.setBio(artistDTO.getBio());
+
+            // Xử lý file ảnh đại diện nếu có
+            if (avatarFile != null && !avatarFile.isEmpty()) {
+                try {
+                    long maxBytes = DataSize.parse(maxFileSize).toBytes();
+                    if (avatarFile.getSize() > maxBytes) {
+                        bindingResult.rejectValue("avatarFile", "error.avatarFile.size", "Kích thước file không được vượt quá " + maxFileSize);
+                        return "artist/create";
+                    }
+                } catch (IllegalArgumentException e) {
+                    bindingResult.rejectValue("avatarFile", "error.avatarFile.config", "Lỗi cấu hình kích thước file tối đa.");
+                    return "artist/create";
+                }
+                String contentType = avatarFile.getContentType();
+                if (contentType == null || !(contentType.equalsIgnoreCase("image/jpeg")
+                        || contentType.equalsIgnoreCase("image/png")
+                        || contentType.equalsIgnoreCase("image/webp")
+                        || contentType.equalsIgnoreCase("image/gif"))) {
+                    bindingResult.rejectValue("avatarFile", "error.avatarFile.type", "Chỉ chấp nhận ảnh JPEG/PNG/WEBP/GIF.");
+                    return "artist/create";
+                }
+                String storedAvatar = fileStorageService.store(avatarFile);
+                artist.setAvatarPath(storedAvatar);
+            }
             artistService.save(artist);
             redirectAttributes.addFlashAttribute("successMessage", "Thêm nghệ sĩ thành công!");
             logger.info("Artist created successfully: {}", artist.getName());
@@ -101,6 +139,8 @@ public class ArtistController {
         Artist artist = artistService.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Artist", "id", id));
         ArtistDTO artistDTO = new ArtistDTO(artist.getId(), artist.getName());
+        artistDTO.setBio(artist.getBio());
+        artistDTO.setAvatarPath(artist.getAvatarPath());
         model.addAttribute("artistDTO", artistDTO);
         return "artist/edit";
     }
@@ -108,6 +148,7 @@ public class ArtistController {
     @PostMapping("/update")
     public String updateArtist(@Valid @ModelAttribute("artistDTO") ArtistDTO artistDTO,
                                BindingResult bindingResult,
+                               @RequestParam(value = "avatarFile", required = false) MultipartFile avatarFile,
                                RedirectAttributes redirectAttributes) {
         if (bindingResult.hasErrors()) {
             logger.warn("Validation errors in updateArtist form for ID {}.", artistDTO.getId());
@@ -117,6 +158,34 @@ public class ArtistController {
             Artist existingArtist = artistService.findById(artistDTO.getId())
                     .orElseThrow(() -> new ResourceNotFoundException("Artist", "id", artistDTO.getId()));
             existingArtist.setName(artistDTO.getName());
+            existingArtist.setBio(artistDTO.getBio());
+
+            if (avatarFile != null && !avatarFile.isEmpty()) {
+                try {
+                    long maxBytes = DataSize.parse(maxFileSize).toBytes();
+                    if (avatarFile.getSize() > maxBytes) {
+                        bindingResult.rejectValue("avatarFile", "error.avatarFile.size", "Kích thước file không được vượt quá " + maxFileSize);
+                        return "artist/edit";
+                    }
+                } catch (IllegalArgumentException e) {
+                    bindingResult.rejectValue("avatarFile", "error.avatarFile.config", "Lỗi cấu hình kích thước file tối đa.");
+                    return "artist/edit";
+                }
+                String contentType = avatarFile.getContentType();
+                if (contentType == null || !(contentType.equalsIgnoreCase("image/jpeg")
+                        || contentType.equalsIgnoreCase("image/png")
+                        || contentType.equalsIgnoreCase("image/webp")
+                        || contentType.equalsIgnoreCase("image/gif"))) {
+                    bindingResult.rejectValue("avatarFile", "error.avatarFile.type", "Chỉ chấp nhận ảnh JPEG/PNG/WEBP/GIF.");
+                    return "artist/edit";
+                }
+                // Xóa file cũ nếu có
+                if (existingArtist.getAvatarPath() != null && !existingArtist.getAvatarPath().isEmpty()) {
+                    fileStorageService.delete(existingArtist.getAvatarPath());
+                }
+                String storedAvatar = fileStorageService.store(avatarFile);
+                existingArtist.setAvatarPath(storedAvatar);
+            }
             artistService.save(existingArtist);
             redirectAttributes.addFlashAttribute("successMessage", "Cập nhật nghệ sĩ thành công!");
             logger.info("Artist updated successfully: {}", existingArtist.getName());
@@ -151,5 +220,15 @@ public class ArtistController {
             redirectAttributes.addFlashAttribute("errorMessage", "Đã có lỗi xảy ra khi xóa nghệ sĩ.");
         }
         return "redirect:/artists";
+    }
+
+    // Serve artist avatar
+    @GetMapping("/photo/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveAvatar(@PathVariable String filename) {
+        Resource file = fileStorageService.loadAsResource(filename);
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "inline; filename=\"" + file.getFilename() + "\"")
+                .body(file);
     }
 }

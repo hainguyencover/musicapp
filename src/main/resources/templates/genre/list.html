@@ -1,6 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/main :: head('Danh sách Thể loại')}"></head>
+<html xmlns:th="http://www.thymeleaf.org" lang="">
+<head th:replace="~{layout/main :: head('Danh sách Thể loại')}">
+    <title>
+
+    </title>
+</head>
 <body>
 
 <header th:replace="~{layout/main :: header}"></header>
@@ -41,12 +45,12 @@
             <ul class="pagination">
                 <li class="page-item" th:classappend="${genrePage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/genres(size=${genrePage.size}, page=0, sort=${#request.getParameter('sort')})}">&laquo;
+                       th:href="@{/genres(size=${genrePage.size}, page=0, sort=${param.sort})}">&laquo;
                         Đầu</a>
                 </li>
                 <li class="page-item" th:classappend="${genrePage.first} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/genres(size=${genrePage.size}, page=${genrePage.number - 1}, sort=${#request.getParameter('sort')})}"
+                       th:href="@{/genres(size=${genrePage.size}, page=${genrePage.number - 1}, sort=${param.sort})}"
                        th:if="${!genrePage.first}">&lsaquo; Trước</a>
                     <span class="page-link" th:if="${genrePage.first}">&lsaquo; Trước</span>
                 </li>
@@ -58,19 +62,19 @@
                     <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
                         th:classappend="${i == currentPage} ? 'active'">
                         <a class="page-link"
-                           th:href="@{/genres(size=${genrePage.size}, page=${i}, sort=${#request.getParameter('sort')})}"
+                           th:href="@{/genres(size=${genrePage.size}, page=${i}, sort=${param.sort})}"
                            th:text="${i + 1}"></a>
                     </li>
                 </th:block>
                 <li class="page-item" th:classappend="${genrePage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/genres(size=${genrePage.size}, page=${genrePage.number + 1}, sort=${#request.getParameter('sort')})}"
+                       th:href="@{/genres(size=${genrePage.size}, page=${genrePage.number + 1}, sort=${param.sort})}"
                        th:if="${!genrePage.last}">Sau &rsaquo;</a>
                     <span class="page-link" th:if="${genrePage.last}">Sau &rsaquo;</span>
                 </li>
                 <li class="page-item" th:classappend="${genrePage.last} ? 'disabled'">
                     <a class="page-link"
-                       th:href="@{/genres(size=${genrePage.size}, page=${genrePage.totalPages - 1}, sort=${#request.getParameter('sort')})}">Cuối
+                       th:href="@{/genres(size=${genrePage.size}, page=${genrePage.totalPages - 1}, sort=${param.sort})}">Cuối
                         &raquo;</a>
                 </li>
             </ul>

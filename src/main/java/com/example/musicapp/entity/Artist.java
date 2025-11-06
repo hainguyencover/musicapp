@@ -20,6 +20,12 @@ public class Artist {
     @Column(nullable = false, length = 100)
     private String name;
 
+    @Column(name = "bio", columnDefinition = "TEXT")
+    private String bio;
+
+    @Column(name = "avatar_path", length = 255)
+    private String avatarPath;
+
     // Relationship: One Artist can have many Songs
     // 'mappedBy = "artist"' refers to the 'artist' field in the Song entity
     // CascadeType.ALL means operations (persist, remove, merge, refresh, detach) on Artist will cascade to associated Songs
@@ -38,6 +44,8 @@ public class Artist {
         return "Artist{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", bio='" + (bio != null ? (bio.length() > 30 ? bio.substring(0,30)+"..." : bio) : null) + '\'' +
+                ", avatarPath='" + avatarPath + '\'' +
                 '}';
     }
 }
