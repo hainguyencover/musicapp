@@ -13,4 +13,9 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * Tìm kiếm User dựa trên username (không phân biệt hoa thường).
      */
     Optional<User> findByUsernameIgnoreCase(String username);
+
+    /**
+     * Kiểm tra xem username đã tồn tại chưa (không phân biệt hoa thường).
+     */
+    boolean existsByUsernameIgnoreCase(String username);
 }

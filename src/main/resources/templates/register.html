@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout/main :: head('Đăng ký tài khoản')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+  <h1>Đăng Ký Tài Khoản Mới</h1>
+
+  <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+
+  <form th:action="@{/register}" th:object="${userDto}" method="post">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+
+    <div>
+      <label for="username">Tên đăng nhập:</label>
+      <input type="text" id="username" th:field="*{username}" />
+      <span class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></span>
+    </div>
+    <div>
+      <label for="password">Mật khẩu (ít nhất 6 ký tự):</label>
+      <input type="password" id="password" th:field="*{password}" />
+      <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+    </div>
+    <div>
+      <label for="confirmPassword">Xác nhận mật khẩu:</label>
+      <input type="password" id="confirmPassword" th:field="*{confirmPassword}" />
+      <span class="error" th:if="${#fields.hasErrors('confirmPassword')}" th:errors="*{confirmPassword}"></span>
+    </div>
+
+    <div>
+      <button type="submit">Đăng Ký</button>
+      <a th:href="@{/}">Hủy</a>
+    </div>
+    <p>Đã có tài khoản? <a th:href="@{/login}">Đăng nhập tại đây</a></p>
+  </form>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

@@ -10,7 +10,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static org.springframework.security.config.Customizer.withDefaults; // Dùng cho formLogin mặc định
 
 @Configuration
 @EnableWebSecurity
@@ -34,25 +33,46 @@ public class SecurityConfig {
                 .userDetailsService(customUserDetailsService)
 
                 .authorizeHttpRequests(authorize -> authorize
-                        // (Các quy tắc phân quyền giữ nguyên)
+                        // 1. PUBLIC (Ai cũng xem được)
                         .requestMatchers(
-                                "/", "/css/**", "/js/**", "/error/**",
-                                "/songs/play/**", "/artists/photo/**"
+                                "/",
+                                "/css/**",
+                                "/js/**",
+                                "/error/**",
+                                "/login", // Trang login
+                                "/register", // Trang register
+                                "/songs/play/**",
+                                "/artists/photo/**"
                         ).permitAll()
+                        // 2. ADMIN ONLY (Chỉ Admin được C/U/D)
                         .requestMatchers(
                                 "/songs/create", "/songs/edit/**", "/songs/update", "/songs/delete/**",
                                 "/artists/create", "/artists/edit/**", "/artists/update", "/artists/delete/**",
                                 "/genres/create", "/genres/edit/**", "/genres/update", "/genres/delete/**"
                         ).hasRole("ADMIN")
+                        // 3. USER (Phải đăng nhập)
+                        // Bất kỳ ai đã đăng nhập (USER hoặc ADMIN) đều có thể XEM (GET) danh sách
                         .requestMatchers(
                                 HttpMethod.GET,
-                                "/songs", "/artists", "/genres"
+                                "/play/**",
+                                "/dashboard",
+                                "/songs",
+                                "/artists",
+                                "/genres"
                         ).authenticated()
                         .anyRequest().denyAll()
                 )
-                .formLogin(withDefaults())
+                // Cấu hình Form Login (trỏ đến trang /login tùy chỉnh)
+                .formLogin(form -> form
+                        .loginPage("/login") // Báo Spring Security trang login của bạn ở đâu
+                        .loginProcessingUrl("/login") // Nơi xử lý POST login
+                        .defaultSuccessUrl("/dashboard", true) // Tới /songs sau khi login
+                        .failureUrl("/login?error=true") // Về /login?error nếu sai
+                        .permitAll()
+                )
                 .logout(logout -> logout
-                        .logoutSuccessUrl("/")
+                        .logoutUrl("/logout") // (URL mặc định)
+                        .logoutSuccessUrl("/login?logout=true") // 6. Chuyển về /login?logout sau khi logout
                         .permitAll()
                 );
         return http.build();

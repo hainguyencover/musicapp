@@ -37,10 +37,10 @@ public class SongServiceImpl implements ISongService {
         this.fileStorageService = fileStorageService;
     }
 
-//    @Override
-//    public List<Song> findAll() {
-//        return songRepository.findAll();
-//    }
+    @Override
+    public List<Song> findAll() {
+        return songRepository.findAll();
+    }
 
     @Override
     public Page<Song> findAll(String keyword, Pageable pageable) { // Implement phương thức mới

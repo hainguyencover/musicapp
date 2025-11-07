@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="~{layout/main :: head('Đang phát')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container player-page-container">
+
+    <div class="music-player">
+
+        <div class="player-disc" id="playerDisc">
+            <img th:if="${song.artist?.avatarPath != null}"
+                 th:src="@{/artists/photo/{filename}(filename=${song.artist.avatarPath})}"
+                 alt="Disk Art">
+            <img th:if="${song.artist?.avatarPath == null}"
+                 th:src="@{/css/default-disk.png}" alt="Disk Art"></div>
+
+        <div class="player-info">
+            <h2 id="playerSongName" th:text="${song.name}">Tên bài hát</h2>
+            <p id="playerArtistName" th:text="${song.artist?.name}">Tên nghệ sĩ</p>
+        </div>
+
+        <div class="seek-bar-container">
+            <span id="currentTime" class="time-label">0:00</span>
+            <input type="range" id="seekBar" class="seek-bar" value="0" step="1">
+            <span id="duration" class="time-label">0:00</span>
+        </div>
+
+        <div class="player-controls">
+            <button class="control-btn" id="btnShuffle" title="Trộn bài (Chưa hỗ trợ)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <polyline points="16 3 21 3 21 8"></polyline>
+                    <line x1="4" y1="20" x2="21" y2="3"></line>
+                    <polyline points="21 16 21 21 16 21"></polyline>
+                    <line x1="15" y1="15" x2="21" y2="21"></line>
+                    <line x1="4" y1="4" x2="9" y2="9"></line>
+                </svg>
+            </button>
+            <button class="control-btn" id="btnBack" title="Bài trước (Chưa hỗ trợ)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"></path>
+                </svg>
+            </button>
+            <button class="control-btn play-pause-btn" id="btnPlayPause">
+                <svg id="iconPlay" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                     fill="currentColor">
+                    <path d="M8 5v14l11-7z"></path>
+                </svg>
+                <svg id="iconPause" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24"
+                     fill="currentColor" style="display: none;">
+                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>
+                </svg>
+            </button>
+            <button class="control-btn" id="btnNext" title="Bài tiếp (Chưa hỗ trợ)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="m6 18 8.5-6L6 6v12zM16 6v12h2V6h-2z"></path>
+                </svg>
+            </button>
+            <button class="control-btn" id="btnRepeat" title="Lặp lại (Chưa hỗ trợ)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <polyline points="17 1 21 5 17 9"></polyline>
+                    <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                    <polyline points="7 23 3 19 7 15"></polyline>
+                    <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                </svg>
+            </button>
+        </div>
+
+        <div class="player-extra-controls">
+            <button class="control-btn" id="btnLike" title="Thích (Chưa hỗ trợ)">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+            </button>
+            <input type="range" id="volumeBar" class="volume-bar" min="0" max="1" step="0.01" value="1">
+        </div>
+
+        <audio id="audioPlayer" th:src="@{/songs/play/{filename}(filename=${song.filePath})}"></audio>
+
+    </div>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Lấy các element
+        const audioPlayer = document.getElementById("audioPlayer");
+        const playerDisc = document.getElementById("playerDisc");
+        const playPauseBtn = document.getElementById("btnPlayPause");
+        const iconPlay = document.getElementById("iconPlay");
+        const iconPause = document.getElementById("iconPause");
+        const seekBar = document.getElementById("seekBar");
+        const currentTimeEl = document.getElementById("currentTime");
+        const durationEl = document.getElementById("duration");
+        const volumeBar = document.getElementById("volumeBar");
+
+        // === CHỨC NĂNG GIAI ĐOẠN 1: PLAY/PAUSE/SEEK/VOLUME ===
+
+        // 1. Nút Play/Pause
+        playPauseBtn.addEventListener("click", () => {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playerDisc.classList.add("playing"); // Bắt đầu quay đĩa
+                iconPlay.style.display = "none";
+                iconPause.style.display = "block";
+            } else {
+                audioPlayer.pause();
+                playerDisc.classList.remove("playing"); // Dừng quay đĩa
+                iconPlay.style.display = "block";
+                iconPause.style.display = "none";
+            }
+        });
+
+        // 2. Cập nhật Seek bar và Thời gian khi nhạc chạy
+        audioPlayer.addEventListener("timeupdate", () => {
+            // Cập nhật thanh seek
+            const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            seekBar.value = progress;
+            // Cập nhật thời gian hiện tại
+            currentTimeEl.textContent = formatTime(audioPlayer.currentTime);
+        });
+
+        // 3. Tua (Seek)
+        seekBar.addEventListener("input", () => {
+            const time = (seekBar.value / 100) * audioPlayer.duration;
+            audioPlayer.currentTime = time;
+        });
+
+        // 4. Âm lượng
+        volumeBar.addEventListener("input", () => {
+            audioPlayer.volume = volumeBar.value;
+        });
+
+        // 5. Lấy tổng thời lượng (metadata)
+        audioPlayer.addEventListener("loadedmetadata", () => {
+            durationEl.textContent = formatTime(audioPlayer.duration);
+            seekBar.max = 100; // Đảm bảo seek bar max là 100%
+        });
+
+        // Hàm helper định dạng thời gian (vd: 125 giây -> 2:05)
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+
+        // === CHỨC NĂNG GIAI ĐOẠN 2 (STUBS) ===
+        document.getElementById("btnShuffle").onclick = () => alert("Chức năng Trộn bài sẽ được cập nhật!");
+        document.getElementById("btnBack").onclick = () => alert("Chức năng Bài trước sẽ được cập nhật!");
+        document.getElementById("btnNext").onclick = () => alert("Chức năng Bài tiếp sẽ được cập nhật!");
+        document.getElementById("btnRepeat").onclick = () => alert("Chức năng Lặp lại sẽ được cập nhật!");
+        document.getElementById("btnLike").onclick = () => alert("Chức năng Thích sẽ được cập nhật!");
+    });
+</script>
+
+</body>
+</html>

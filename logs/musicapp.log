@@ -1,371 +1,777 @@
-2025-11-06 20:20:59,122 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 1812 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:20:59,126 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:20:59,127 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:21:00,461 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:21:00,462 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:21:00,462 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:21:00,510 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:21:01,142 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:21:01,399 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7239f84
-2025-11-06 20:21:01,401 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:21:01,457 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:21:02,791 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:21:02,860 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:21:03,541 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:21:03,562 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.944 seconds (process running for 5.644)
-2025-11-06 20:21:36,331 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:21:44,493 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-6] Fetching genre list page 0
-2025-11-06 20:21:50,286 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-10] Fetching artist list page 0
-2025-11-06 20:21:50,339 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:21:50,340 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:22:12,582 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-3] Fetching artist list page 1
-2025-11-06 20:22:15,182 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-5] Fetching artist list page 2
-2025-11-06 20:22:17,478 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-7] Fetching artist list page 3
-2025-11-06 20:22:20,611 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-9] Fetching artist list page 0
-2025-11-06 20:22:20,647 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:22:20,647 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:23:01,515 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-3] Fetching artist list page 0
-2025-11-06 20:23:01,541 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:23:01,541 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:23:06,488 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:23:06,493 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:23:09,610 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 11956 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:23:09,612 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:23:09,612 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:23:10,710 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:23:10,711 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:23:10,711 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:23:10,757 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:23:11,247 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:23:11,469 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4e4468d3
-2025-11-06 20:23:11,471 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:23:11,509 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:23:12,585 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:23:12,642 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:23:13,281 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:23:13,302 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.126 seconds (process running for 4.703)
-2025-11-06 20:23:17,173 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:23:17,227 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
-2025-11-06 20:23:17,634 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:23:17,634 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:28:50,096 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:28:50,101 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:28:53,123 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 3696 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:28:53,125 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:28:53,126 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:28:54,454 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:28:54,456 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:28:54,457 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:28:54,510 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:28:55,072 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:28:55,348 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@77e570e1
-2025-11-06 20:28:55,349 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:28:55,393 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:28:56,711 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:28:56,794 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:28:57,623 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:28:57,652 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.988 seconds (process running for 5.657)
-2025-11-06 20:29:00,447 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:29:00,498 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
-2025-11-06 20:29:00,985 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:29:00,986 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:31:01,412 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-7] Fetching artist list page 3
-2025-11-06 20:31:05,014 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-9] Fetching artist list page 2
-2025-11-06 20:31:11,233 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 1
-2025-11-06 20:31:13,770 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-3] Fetching artist list page 0
-2025-11-06 20:31:13,801 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:31:13,801 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:43:13,077 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:43:13,082 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:43:17,221 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 3044 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:43:17,223 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:43:17,223 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:43:18,307 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:43:18,309 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:43:18,309 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:43:18,353 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:43:18,835 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:43:19,062 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@49c7569c
-2025-11-06 20:43:19,063 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:43:19,102 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:43:20,151 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:43:20,223 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:43:20,818 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:43:20,839 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.033 seconds (process running for 4.568)
-2025-11-06 20:43:29,677 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:43:29,729 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
-2025-11-06 20:43:30,115 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:43:30,116 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:43:45,792 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-5] Fetching artist list page 3
-2025-11-06 20:43:47,804 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-7] Fetching artist list page 0
-2025-11-06 20:43:47,837 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-6] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:43:47,837 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-6] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:43:49,543 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-10] Fetching artist list page 1
-2025-11-06 20:43:51,845 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-3] Fetching artist list page 2
-2025-11-06 20:44:35,929 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-4] Fetching artist list page 0
-2025-11-06 20:44:35,957 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:44:35,957 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:44:39,281 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-7] Fetching genre list page 0
-2025-11-06 20:45:25,586 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-6] Fetching artist list page 0
-2025-11-06 20:45:25,616 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:45:25,617 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:45:54,822 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 20:45:54,848 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Displayed song list page 1
-2025-11-06 20:45:54,884 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:45:54,884 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:45:54,885 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:45:54,885 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:49:37,646 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:49:37,650 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:49:40,730 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 10860 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:49:40,732 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:49:40,733 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:49:42,082 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:49:42,084 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:49:42,084 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:49:42,131 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:49:42,706 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:49:42,961 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3642beb2
-2025-11-06 20:49:42,963 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:49:43,008 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:49:44,116 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:49:44,183 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:49:44,779 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:49:44,799 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.49 seconds (process running for 5.085)
-2025-11-06 20:49:45,541 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:49:45,579 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 20:49:45,703 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Displayed song list page 1
-2025-11-06 20:49:46,066 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:49:46,067 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:49:46,068 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:49:46,068 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 20:49:48,196 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-5] Fetching artist list page 0
-2025-11-06 20:49:48,240 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-7] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:49:48,240 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-7] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:49:52,797 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-8] Fetching artist list page 1
-2025-11-06 20:49:54,470 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-6] Fetching artist list page 2
-2025-11-06 20:49:55,970 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-2] Fetching genre list page 0
-2025-11-06 20:50:20,503 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:50:20,508 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:50:24,349 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9680 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:50:24,351 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:50:24,351 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:50:25,498 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:50:25,500 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:50:25,500 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:50:25,544 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:50:26,029 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:50:26,265 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@325c75a
-2025-11-06 20:50:26,267 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:50:26,308 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:50:27,383 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:50:27,447 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:50:28,099 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:50:28,121 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.203 seconds (process running for 5.135)
-2025-11-06 20:50:28,186 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:50:28,228 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-1] Fetching genre list page 0
-2025-11-06 20:50:31,800 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-4] Fetching artist list page 1
-2025-11-06 20:50:36,814 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-6] Fetching genre list page 0
-2025-11-06 20:50:38,453 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-8] Fetching artist list page 1
-2025-11-06 20:50:43,548 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-9] Fetching genre list page 0
-2025-11-06 20:50:46,660 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-2] Fetching artist list page 1
-2025-11-06 20:53:03,501 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:53:03,506 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:53:06,142 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 10928 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:53:06,144 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:53:06,145 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:53:07,229 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:53:07,231 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:53:07,231 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:53:07,277 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:53:07,756 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:53:07,981 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@553dd0a4
-2025-11-06 20:53:07,982 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:53:08,022 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:53:09,062 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:53:09,125 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:53:09,723 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:53:09,745 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.027 seconds (process running for 4.57)
-2025-11-06 20:53:13,806 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:53:13,860 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 1
-2025-11-06 20:53:16,342 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-4] Fetching genre list page 0
-2025-11-06 20:53:17,966 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource genre.]
-2025-11-06 20:54:30,134 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:54:30,139 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:54:32,808 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 10540 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:54:32,810 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:54:32,811 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:54:33,897 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:54:33,898 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:54:33,898 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:54:33,944 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:54:34,458 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:54:34,701 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6e473d76
-2025-11-06 20:54:34,702 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:54:34,742 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:54:35,975 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:54:36,063 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:54:36,844 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:54:36,865 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.473 seconds (process running for 4.994)
-2025-11-06 20:54:37,704 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:54:37,758 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource genre.]
-2025-11-06 20:55:00,710 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-3] Fetching genre list page 0
-2025-11-06 20:55:03,777 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-4] Fetching genre list page 1
-2025-11-06 20:55:07,487 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-8] Fetching genre list page 0
-2025-11-06 20:55:09,223 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-7] Fetching genre list page 1
-2025-11-06 20:55:18,826 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-2] Fetching genre list page 0
-2025-11-06 20:55:21,488 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-6] Fetching genre list page 0
-2025-11-06 20:55:23,963 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-4] Fetching genre list page 0
-2025-11-06 20:55:27,856 INFO com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-8] Displaying create genre form
-2025-11-06 20:55:37,449 INFO com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-7] Genre created successfully: Nhạc Việt
-2025-11-06 20:55:37,455 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-1] Fetching genre list page 0
-2025-11-06 20:55:40,782 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-3] Fetching genre list page 1
-2025-11-06 20:55:43,915 INFO com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-5] Displaying create genre form
-2025-11-06 20:55:56,934 INFO com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-10] Genre created successfully: Nhạc Thiếu Nhi
-2025-11-06 20:55:56,937 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-8] Fetching genre list page 0
-2025-11-06 20:55:59,242 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-7] Fetching genre list page 1
-2025-11-06 20:56:11,063 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-3] Fetching artist list page 0
-2025-11-06 20:56:11,095 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:56:11,096 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:57:39,990 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 20:57:39,994 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 20:57:42,683 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9572 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 20:57:42,685 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 20:57:42,685 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 20:57:43,815 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:57:43,816 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 20:57:43,816 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 20:57:43,862 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 20:57:44,375 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 20:57:44,601 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@51753a6b
-2025-11-06 20:57:44,603 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 20:57:44,642 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 20:57:45,789 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 20:57:45,853 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 20:57:46,465 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 20:57:46,488 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.217 seconds (process running for 4.887)
-2025-11-06 20:57:47,839 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 20:57:47,884 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
-2025-11-06 20:57:48,281 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 20:57:48,282 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:01:13,835 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 21:01:13,840 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 21:01:16,230 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 12424 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 21:01:16,232 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 21:01:16,233 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 21:01:17,370 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 21:01:17,372 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 21:01:17,373 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 21:01:17,429 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 21:01:17,922 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 21:01:18,154 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@439254e3
-2025-11-06 21:01:18,156 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 21:01:18,196 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 21:01:19,254 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 21:01:19,313 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 21:01:19,916 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 21:01:19,937 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.121 seconds (process running for 4.786)
-2025-11-06 21:01:23,743 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 21:01:23,787 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
-2025-11-06 21:01:24,176 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:01:24,177 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:02:31,442 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 21:02:31,447 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 21:02:33,917 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 1644 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 21:02:33,919 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 21:02:33,920 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 21:02:35,014 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 21:02:35,016 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 21:02:35,016 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 21:02:35,065 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 21:02:35,557 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 21:02:35,782 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@76446c02
-2025-11-06 21:02:35,784 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 21:02:35,823 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 21:02:36,909 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 21:02:36,972 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 21:02:37,570 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 21:02:37,591 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.191 seconds (process running for 4.757)
-2025-11-06 21:02:42,389 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 21:02:42,452 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
-2025-11-06 21:02:42,854 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:02:42,855 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:02:48,727 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-3] Fetching genre list page 0
-2025-11-06 21:02:54,537 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-7] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 21:02:54,553 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-7] Displayed song list page 1
-2025-11-06 21:02:54,586 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:02:54,586 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:02:54,586 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:02:54,587 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:02:58,584 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-6] Fetching artist list page 0
-2025-11-06 21:02:58,616 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:02:58,616 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:03:02,911 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 21:03:02,918 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Displayed song list page 1
-2025-11-06 21:03:02,947 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:03:02,947 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:03:02,948 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:03:02,948 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:15,500 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 21:08:15,505 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
-2025-11-06 21:08:19,386 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 8780 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
-2025-11-06 21:08:19,388 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
-2025-11-06 21:08:19,389 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
-2025-11-06 21:08:20,538 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
-2025-11-06 21:08:20,539 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
-2025-11-06 21:08:20,539 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
-2025-11-06 21:08:20,590 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
-2025-11-06 21:08:21,134 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
-2025-11-06 21:08:21,363 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@24264488
-2025-11-06 21:08:21,365 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
-2025-11-06 21:08:21,407 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
-2025-11-06 21:08:22,540 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
-2025-11-06 21:08:22,604 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2025-11-06 21:08:23,276 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
-2025-11-06 21:08:23,297 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.337 seconds (process running for 4.925)
-2025-11-06 21:08:29,727 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
-2025-11-06 21:08:29,770 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 21:08:29,900 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Displayed song list page 1
-2025-11-06 21:08:30,428 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:30,429 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:30,430 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:30,430 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:37,858 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Displaying edit form for song ID 1
-2025-11-06 21:08:41,666 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-7] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 21:08:41,673 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-7] Displayed song list page 1
-2025-11-06 21:08:41,707 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:41,707 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:41,707 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:41,707 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:43,176 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-10] Displaying create song form
-2025-11-06 21:08:44,987 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 21:08:44,994 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Displayed song list page 1
-2025-11-06 21:08:45,020 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-4] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:45,020 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:45,020 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:45,021 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-4] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:08:46,358 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-5] Fetching artist list page 0
-2025-11-06 21:08:46,392 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-7] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:08:46,393 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-7] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:08:50,360 INFO com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-8] Displaying create artist form
-2025-11-06 21:08:52,922 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-10] Fetching artist list page 0
-2025-11-06 21:08:52,953 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:08:52,953 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:08:54,202 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-3] Fetching genre list page 0
-2025-11-06 21:08:55,238 INFO com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-5] Displaying create genre form
-2025-11-06 21:08:57,097 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-7] Fetching genre list page 0
-2025-11-06 21:09:00,289 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Fetching song list for page: 0, size: 5, sort: name: ASC
-2025-11-06 21:09:00,296 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Displayed song list page 1
-2025-11-06 21:09:00,323 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:09:00,324 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:09:00,324 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:09:00,324 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
-2025-11-06 21:09:01,645 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-2] Fetching artist list page 0
-2025-11-06 21:09:01,668 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:09:01,668 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:09:03,115 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-5] Fetching genre list page 0
-2025-11-06 21:09:04,674 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-7] Fetching artist list page 0
-2025-11-06 21:09:04,702 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:09:04,702 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
-2025-11-06 21:09:55,159 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
-2025-11-06 21:09:55,163 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 13:38:30,109 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 15916 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 13:38:30,114 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 13:38:30,115 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 13:38:31,681 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:38:31,682 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 13:38:31,682 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 13:38:31,731 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 13:38:32,314 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 13:38:32,670 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@585da703
+2025-11-07 13:38:32,672 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 13:38:32,733 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 13:38:34,003 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 13:38:34,070 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 13:38:34,617 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:38:34,646 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 5.095 seconds (process running for 5.875)
+2025-11-07 13:39:47,577 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-3] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 13:39:52,456 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:39:59,431 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-10] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:43:49,968 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 13:43:49,974 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 13:43:54,534 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 5496 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 13:43:54,536 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 13:43:54,537 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 13:43:55,749 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:43:55,750 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 13:43:55,751 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 13:43:55,803 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 13:43:56,319 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 13:43:56,553 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@5794e1a6
+2025-11-07 13:43:56,555 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 13:43:56,599 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 13:43:57,745 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 13:43:57,812 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 13:43:58,293 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:43:58,317 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.224 seconds (process running for 4.851)
+2025-11-07 13:44:09,511 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 13:44:09,552 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:44:19,087 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:45:30,732 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 13:45:30,737 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 13:45:35,015 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 15164 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 13:45:35,017 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 13:45:35,018 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 13:45:36,324 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:45:36,325 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 13:45:36,326 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 13:45:36,381 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 13:45:36,941 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 13:45:37,211 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6dfe62df
+2025-11-07 13:45:37,213 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 13:45:37,257 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 13:45:38,541 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 13:45:38,614 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 13:45:39,147 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:45:39,172 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.654 seconds (process running for 5.679)
+2025-11-07 13:46:29,609 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 13:46:32,081 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:46:37,781 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:46:40,598 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-10] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:47:33,769 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:50:01,666 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-3] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:58:34,003 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 13:58:34,008 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 13:58:37,934 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 14808 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 13:58:37,937 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 13:58:37,938 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 13:58:39,170 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:58:39,172 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 13:58:39,172 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 13:58:39,219 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 13:58:39,764 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 13:58:40,022 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2de71de4
+2025-11-07 13:58:40,024 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 13:58:40,067 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 13:58:41,320 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 13:58:41,392 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 13:58:41,556 WARN org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [restartedMain] Found 2 UserDetailsService beans, with names [customUserDetailsService, userDetailsService]. Global Authentication Manager will not use a UserDetailsService for username/password login. Consider publishing a single UserDetailsService bean.
+2025-11-07 13:58:42,058 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 13:58:42,082 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.627 seconds (process running for 5.306)
+2025-11-07 13:58:49,573 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-2] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 13:58:56,410 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:59:03,946 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:59:10,091 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-6] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 13:59:14,378 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-8] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource login.]
+2025-11-07 14:06:56,147 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:56,250 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:56,260 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2025-11-07 14:06:56,276 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2025-11-07 14:06:56,394 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 14808 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:06:56,395 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:06:56,395 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:06:56,836 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:56,836 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:06:56,836 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:06:56,861 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:06:57,026 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2025-11-07 14:06:57,051 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@47f63c0b
+2025-11-07 14:06:57,052 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2025-11-07 14:06:57,054 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:06:57,359 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:06:57,411 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:06:57,588 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:57,596 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 1.25 seconds (process running for 500.82)
+2025-11-07 14:06:59,082 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:59,142 INFO org.apache.juli.logging.DirectJDKLog [Thread-7] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:59,150 INFO com.zaxxer.hikari.HikariDataSource [Thread-7] HikariPool-2 - Shutdown initiated...
+2025-11-07 14:06:59,155 INFO com.zaxxer.hikari.HikariDataSource [Thread-7] HikariPool-2 - Shutdown completed.
+2025-11-07 14:06:59,227 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 14808 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:06:59,227 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:06:59,227 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:06:59,513 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:59,513 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:06:59,513 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:06:59,533 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:06:59,580 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-3 - Starting...
+2025-11-07 14:06:59,591 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7269a907
+2025-11-07 14:06:59,591 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-3 - Start completed.
+2025-11-07 14:06:59,592 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:06:59,756 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:06:59,798 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:06:59,923 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:06:59,934 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 0.732 seconds (process running for 503.159)
+2025-11-07 14:07:17,181 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:17,240 INFO org.apache.juli.logging.DirectJDKLog [Thread-11] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:17,243 INFO com.zaxxer.hikari.HikariDataSource [Thread-11] HikariPool-3 - Shutdown initiated...
+2025-11-07 14:07:17,246 INFO com.zaxxer.hikari.HikariDataSource [Thread-11] HikariPool-3 - Shutdown completed.
+2025-11-07 14:07:17,310 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 14808 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:07:17,311 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:07:17,311 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:07:17,625 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:17,626 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:07:17,626 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:07:17,645 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:07:17,686 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-4 - Starting...
+2025-11-07 14:07:17,695 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-4 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6defe0bf
+2025-11-07 14:07:17,696 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-4 - Start completed.
+2025-11-07 14:07:17,697 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:07:17,930 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:07:17,969 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:07:18,115 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:18,122 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 0.836 seconds (process running for 521.347)
+2025-11-07 14:07:19,597 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:19,656 INFO org.apache.juli.logging.DirectJDKLog [Thread-15] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:19,659 INFO com.zaxxer.hikari.HikariDataSource [Thread-15] HikariPool-4 - Shutdown initiated...
+2025-11-07 14:07:19,663 INFO com.zaxxer.hikari.HikariDataSource [Thread-15] HikariPool-4 - Shutdown completed.
+2025-11-07 14:07:19,727 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 14808 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:07:19,727 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:07:19,727 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:07:20,004 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:20,005 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:07:20,005 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:07:20,024 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:07:20,064 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-5 - Starting...
+2025-11-07 14:07:20,073 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-5 - Added connection com.mysql.cj.jdbc.ConnectionImpl@36f17d66
+2025-11-07 14:07:20,074 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-5 - Start completed.
+2025-11-07 14:07:20,075 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:07:20,214 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:07:20,248 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:07:20,374 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:20,381 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 0.678 seconds (process running for 523.606)
+2025-11-07 14:07:20,632 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-5 - Shutdown initiated...
+2025-11-07 14:07:20,635 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-5 - Shutdown completed.
+2025-11-07 14:07:23,692 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9096 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:07:23,695 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:07:23,696 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:07:25,076 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:25,081 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:07:25,082 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:07:25,138 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:07:25,716 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 14:07:26,096 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@32352851
+2025-11-07 14:07:26,098 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 14:07:26,161 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:07:27,900 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:07:28,022 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:07:28,796 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:07:28,836 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 5.688 seconds (process running for 6.626)
+2025-11-07 14:10:14,135 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 14:16:54,444 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 14:16:54,449 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 14:16:57,319 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 12908 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:16:57,322 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:16:57,323 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:16:58,766 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:16:58,768 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:16:58,768 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:16:58,818 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:16:59,395 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 14:16:59,674 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e609060
+2025-11-07 14:16:59,676 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 14:16:59,723 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:17:01,063 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:17:01,141 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:17:01,697 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:17:01,721 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 5.038 seconds (process running for 5.894)
+2025-11-07 14:18:24,069 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 14:19:59,308 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-8] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 14:19:59,331 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-8] Displayed song list page 1
+2025-11-07 14:19:59,435 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 14:19:59,436 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 14:19:59,438 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-3] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 14:19:59,438 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 14:20:17,663 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-1] Fetching artist list page 0
+2025-11-07 14:20:17,712 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 14:20:17,713 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 14:20:21,243 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-5] Fetching genre list page 0
+2025-11-07 14:25:54,064 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 14:25:54,070 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 14:26:59,083 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9752 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 14:26:59,084 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 14:26:59,085 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 14:27:00,282 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:27:00,284 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 14:27:00,284 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 14:27:00,333 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 14:27:01,195 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 14:27:01,522 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@439254e3
+2025-11-07 14:27:01,524 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 14:27:01,577 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 14:27:02,846 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 14:27:02,915 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 14:27:03,453 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 14:27:03,486 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.832 seconds (process running for 5.438)
+2025-11-07 14:27:14,940 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 15:04:29,478 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 15:04:29,481 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 15:42:06,738 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 15724 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 15:42:06,740 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 15:42:06,740 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 15:42:08,136 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 15:42:08,137 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 15:42:08,138 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 15:42:08,181 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 15:42:08,663 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 15:42:08,910 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3e3dc2a1
+2025-11-07 15:42:08,911 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 15:42:10,086 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 15:42:10,156 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 15:42:10,655 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 15:42:10,677 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.411 seconds (process running for 5.391)
+2025-11-07 15:42:15,920 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 15:42:16,250 WARN org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-2] No mapping for GET /musicapp/css/style.css
+2025-11-07 15:42:16,259 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-2] Resolved [org.springframework.web.servlet.NoHandlerFoundException: No endpoint GET /musicapp/css/style.css.]
+2025-11-07 15:42:45,894 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 15:42:45,902 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 15:42:48,444 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 11776 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 15:42:48,446 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 15:42:48,448 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 15:42:49,744 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 15:42:49,746 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 15:42:49,746 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 15:42:49,807 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 15:42:50,350 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 15:42:50,610 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@325c75a
+2025-11-07 15:42:50,611 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 15:42:50,657 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 15:42:51,785 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 15:42:51,847 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 15:42:52,330 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 15:42:52,350 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.427 seconds (process running for 4.973)
+2025-11-07 15:43:01,946 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 15:46:59,107 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-10] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 15:46:59,126 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-10] Displayed song list page 1
+2025-11-07 15:46:59,188 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:46:59,188 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:46:59,189 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:46:59,190 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:47:03,212 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-4] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:47:03,212 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:47:03,212 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-4] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:47:03,212 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-4] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 15:47:06,650 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 15:47:06,658 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Displayed song list page 1
+2025-11-07 15:47:08,793 DEBUG com.example.musicapp.controller.web.ArtistController [http-nio-8080-exec-7] Fetching artist list page 0
+2025-11-07 15:47:08,826 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 15:47:08,827 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 15:47:10,725 DEBUG com.example.musicapp.controller.web.GenreController [http-nio-8080-exec-10] Fetching genre list page 0
+2025-11-07 16:39:59,912 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 16:39:59,916 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 16:40:03,456 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 1396 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 16:40:03,458 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 16:40:03,459 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 16:40:04,754 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:40:04,755 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 16:40:04,756 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 16:40:04,803 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 16:40:05,263 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 16:40:05,528 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3f6c251d
+2025-11-07 16:40:05,530 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 16:40:05,569 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 16:40:06,706 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 16:40:06,789 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 16:40:07,263 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:40:07,283 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.322 seconds (process running for 4.858)
+2025-11-07 16:40:12,085 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 16:41:42,789 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 16:41:42,811 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Displayed song list page 1
+2025-11-07 16:41:42,896 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-8] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:41:42,897 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-8] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:41:42,897 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-8] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:41:42,898 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-8] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:42:26,377 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-11-07 16:42:26,382 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-11-07 16:42:29,823 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 16388 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 16:42:29,825 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 16:42:29,826 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 16:42:31,032 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:42:31,033 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 16:42:31,034 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 16:42:31,093 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 16:42:31,620 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 16:42:31,876 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2f3cff16
+2025-11-07 16:42:31,878 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 16:42:31,921 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 16:42:33,136 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 16:42:33,204 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 16:42:33,711 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:42:33,734 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.383 seconds (process running for 5.318)
+2025-11-07 16:42:49,454 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 16:45:14,423 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:45:14,501 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:45:14,510 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2025-11-07 16:45:14,520 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2025-11-07 16:45:14,656 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 16388 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 16:45:14,656 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 16:45:14,656 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 16:45:15,042 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:45:15,042 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 16:45:15,042 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 16:45:15,066 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 16:45:15,152 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2025-11-07 16:45:15,166 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@7eb5fe4b
+2025-11-07 16:45:15,167 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2025-11-07 16:45:15,169 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 16:45:15,354 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 16:45:15,401 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 16:45:15,574 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:45:15,581 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 0.961 seconds (process running for 167.165)
+2025-11-07 16:45:21,221 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-2 - Shutdown initiated...
+2025-11-07 16:45:21,225 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-2 - Shutdown completed.
+2025-11-07 16:45:23,731 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9812 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 16:45:23,734 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 16:45:23,735 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 16:45:25,032 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:45:25,033 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 16:45:25,033 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 16:45:25,084 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 16:45:25,595 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 16:45:25,863 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1afc7c71
+2025-11-07 16:45:25,865 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 16:45:25,908 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 16:45:27,139 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 16:45:27,212 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 16:45:27,743 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 16:45:27,768 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 4.507 seconds (process running for 5.204)
+2025-11-07 16:45:32,881 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 16:45:51,280 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-6] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 16:45:51,302 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-6] Displayed song list page 1
+2025-11-07 16:45:51,412 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:51,413 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:51,415 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:51,416 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:55,952 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-10] Displaying edit form for song ID 1
+2025-11-07 16:45:58,499 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 16:45:58,506 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-3] Displayed song list page 1
+2025-11-07 16:45:58,568 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-6] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:58,568 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-6] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:58,569 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-6] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:58,570 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-6] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:45:58,590 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-6] Servlet.service() for servlet [dispatcherServlet] in context with path [/musicapp] threw exception [Request processing failed: java.lang.IllegalStateException: getOutputStream() has already been called for this response] with root cause
+java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.apache.catalina.connector.Response.getWriter(Response.java:523)
+	at org.apache.catalina.connector.ResponseFacade.getWriter(ResponseFacade.java:186)
+	at jakarta.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:108)
+	at jakarta.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:108)
+	at jakarta.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:108)
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.getWriter(OnCommittedResponseWrapper.java:156)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:370)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1438)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2025-11-07 16:46:06,356 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Fetching song list for page: 0, size: 5, sort: name: ASC
+2025-11-07 16:46:06,360 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Displayed song list page 1
+2025-11-07 16:46:06,416 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:46:06,416 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:46:06,417 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-5] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:46:06,417 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-5] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 16:46:06,432 ERROR org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-5] Servlet.service() for servlet [dispatcherServlet] in context with path [/musicapp] threw exception [Request processing failed: java.lang.IllegalStateException: getOutputStream() has already been called for this response] with root cause
+java.lang.IllegalStateException: getOutputStream() has already been called for this response
+	at org.apache.catalina.connector.Response.getWriter(Response.java:523)
+	at org.apache.catalina.connector.ResponseFacade.getWriter(ResponseFacade.java:186)
+	at jakarta.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:108)
+	at jakarta.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:108)
+	at jakarta.servlet.ServletResponseWrapper.getWriter(ServletResponseWrapper.java:108)
+	at org.springframework.security.web.util.OnCommittedResponseWrapper.getWriter(OnCommittedResponseWrapper.java:156)
+	at org.thymeleaf.spring6.view.ThymeleafView.renderFragment(ThymeleafView.java:370)
+	at org.thymeleaf.spring6.view.ThymeleafView.render(ThymeleafView.java:192)
+	at org.springframework.web.servlet.DispatcherServlet.render(DispatcherServlet.java:1438)
+	at org.springframework.web.servlet.DispatcherServlet.processDispatchResult(DispatcherServlet.java:1168)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1106)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2025-11-07 17:05:32,420 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:32,508 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:32,519 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2025-11-07 17:05:32,527 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2025-11-07 17:05:32,695 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9812 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 17:05:32,695 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 17:05:32,695 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 17:05:33,201 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:33,202 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 17:05:33,202 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 17:05:33,233 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 17:05:33,312 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2025-11-07 17:05:33,325 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@f098a86
+2025-11-07 17:05:33,326 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2025-11-07 17:05:33,327 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 17:05:33,807 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 17:05:33,868 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 17:05:34,104 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:34,113 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 1.48 seconds (process running for 1211.549)
+2025-11-07 17:05:35,589 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:35,651 INFO org.apache.juli.logging.DirectJDKLog [Thread-7] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:35,654 INFO com.zaxxer.hikari.HikariDataSource [Thread-7] HikariPool-2 - Shutdown initiated...
+2025-11-07 17:05:35,658 INFO com.zaxxer.hikari.HikariDataSource [Thread-7] HikariPool-2 - Shutdown completed.
+2025-11-07 17:05:35,735 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 9812 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 17:05:35,735 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 17:05:35,735 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 17:05:36,054 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:36,054 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 17:05:36,055 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 17:05:36,076 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 17:05:36,123 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-3 - Starting...
+2025-11-07 17:05:36,134 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-3 - Added connection com.mysql.cj.jdbc.ConnectionImpl@55005353
+2025-11-07 17:05:36,134 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-3 - Start completed.
+2025-11-07 17:05:36,135 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 17:05:36,284 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 17:05:36,323 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 17:05:36,460 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:36,467 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 0.758 seconds (process running for 1213.903)
+2025-11-07 17:05:39,718 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-3 - Shutdown initiated...
+2025-11-07 17:05:39,721 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-3 - Shutdown completed.
+2025-11-07 17:05:43,381 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 7400 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 17:05:43,384 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 17:05:43,384 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 17:05:44,807 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:44,808 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 17:05:44,809 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 17:05:44,864 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 17:05:45,398 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Starting...
+2025-11-07 17:05:45,683 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@73c7b1f2
+2025-11-07 17:05:45,685 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-1 - Start completed.
+2025-11-07 17:05:45,731 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 17:05:47,160 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 17:05:47,236 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 17:05:47,835 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:05:47,862 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 5.042 seconds (process running for 5.894)
+2025-11-07 17:06:02,729 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 17:06:11,830 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 17:06:11,832 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 17:06:27,564 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:06:27,565 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:06:27,565 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-1] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:06:27,565 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-1] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:41,959 INFO org.apache.juli.logging.DirectJDKLog [tomcat-shutdown] Pausing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:20:42,200 INFO org.apache.juli.logging.DirectJDKLog [Thread-5] Stopping ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:20:42,213 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown initiated...
+2025-11-07 17:20:42,223 INFO com.zaxxer.hikari.HikariDataSource [Thread-5] HikariPool-1 - Shutdown completed.
+2025-11-07 17:20:42,363 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Starting MusicappApplication using Java 17.0.9 with PID 7400 (E:\CodeGym\Module4\musicapp\build\classes\java\main started by lenovo in E:\CodeGym\Module4\musicapp)
+2025-11-07 17:20:42,363 DEBUG org.springframework.boot.StartupInfoLogger [restartedMain] Running with Spring Boot v3.5.7, Spring v6.2.12
+2025-11-07 17:20:42,363 INFO org.springframework.boot.SpringApplication [restartedMain] No active profile set, falling back to 1 default profile: "default"
+2025-11-07 17:20:42,792 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:20:42,793 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting service [Tomcat]
+2025-11-07 17:20:42,793 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting Servlet engine: [Apache Tomcat/10.1.48]
+2025-11-07 17:20:42,815 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Initializing Spring embedded WebApplicationContext
+2025-11-07 17:20:42,881 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Starting...
+2025-11-07 17:20:42,895 INFO com.zaxxer.hikari.pool.HikariPool [restartedMain] HikariPool-2 - Added connection com.mysql.cj.jdbc.ConnectionImpl@1e6b0ff3
+2025-11-07 17:20:42,895 INFO com.zaxxer.hikari.HikariDataSource [restartedMain] HikariPool-2 - Start completed.
+2025-11-07 17:20:42,896 WARN org.hibernate.engine.jdbc.dialect.internal.DialectFactoryImpl [restartedMain] HHH90000025: MySQLDialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-11-07 17:20:43,088 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [restartedMain] Thư mục upload đã tồn tại: G:\ImageFile\music-app
+2025-11-07 17:20:43,133 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [restartedMain] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-11-07 17:20:43,334 INFO org.apache.juli.logging.DirectJDKLog [restartedMain] Starting ProtocolHandler ["http-nio-8080"]
+2025-11-07 17:20:43,351 INFO org.springframework.boot.StartupInfoLogger [restartedMain] Started MusicappApplication in 1.043 seconds (process running for 901.383)
+2025-11-07 17:20:49,413 INFO org.apache.juli.logging.DirectJDKLog [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-11-07 17:20:49,481 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-10] Đang tải file dưới dạng resource: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 17:20:49,481 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-10] Đã tải thành công resource cho file: e643a02c-2dba-40d5-acd1-7b72b7dda98a.jpg
+2025-11-07 17:20:53,465 ERROR com.example.musicapp.exception.GlobalExceptionHandler [http-nio-8080-exec-4] An unexpected error occurred:
+org.springframework.web.servlet.resource.NoResourceFoundException: No static resource css/default-disk.png.
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:585)
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:52)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1089)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:979)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:903)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:564)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:125)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:119)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:235)
+	at org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter.doFilter(AbstractAuthenticationProcessingFilter.java:229)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.csrf.CsrfFilter.doFilterInternal(CsrfFilter.java:117)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.ServletRequestPathFilter.doFilter(ServletRequestPathFilter.java:52)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebSecurityConfiguration.java:319)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$4(HandlerMappingIntrospector.java:267)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:240)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:162)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:138)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:165)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:88)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:113)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:83)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:72)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:342)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:399)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:903)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1774)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:973)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:491)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:842)
+2025-11-07 17:20:53,470 WARN org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [org.springframework.web.servlet.resource.NoResourceFoundException: No static resource css/default-disk.png.]
+2025-11-07 17:20:53,687 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:53,688 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:53,688 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-2] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:53,688 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-2] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:57,319 DEBUG com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Request received to serve file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:57,320 DEBUG com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đang tải file dưới dạng resource: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:57,320 INFO com.example.musicapp.service.storage.LocalFileStorageService [http-nio-8080-exec-9] Đã tải thành công resource cho file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:20:57,321 INFO com.example.musicapp.controller.web.SongController [http-nio-8080-exec-9] Serving file: 96f005b4-7e80-4b95-bd2e-df9d82c634df.mp3
+2025-11-07 17:22:14,349 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-2 - Shutdown initiated...
+2025-11-07 17:22:14,352 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-2 - Shutdown completed.

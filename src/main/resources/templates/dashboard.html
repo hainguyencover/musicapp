@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="vi">
+<head th:replace="~{layout/main :: head('Dashboard')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1>Chào mừng, <span sec:authentication="name">User</span>!</h1>
+    <p>Khám phá âm nhạc của bạn.</p>
+
+    <div class="dashboard-layout">
+
+        <main class="dashboard-main">
+            <h2>Tất cả bài hát</h2>
+            <div class="song-list-container">
+                <div class="song-card" th:each="song : ${songs}">
+                    <div class="song-card-info">
+                        <span class="song-card-title" th:text="${song.name}">Tên Bài hát</span>
+                        <span class="song-card-artist" th:text="${song.artist?.name}">Tên Nghệ sĩ</span>
+                    </div>
+                    <a th:href="@{/play/{id}(id=${song.id})}" class="song-card-play-btn" title="Phát nhạc">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                             fill="currentColor">
+                            <path d="M8 5v14l11-7z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </main>
+
+        <aside class="dashboard-sidebar">
+
+            <div class="sidebar-widget">
+                <h3>Nghệ sĩ</h3>
+                <div class="artist-grid-container">
+                    <div class="artist-avatar-card" th:each="artist : ${artists}">
+                        <img th:if="${artist.avatarPath != null and artist.avatarPath != ''}"
+                             th:src="@{/artists/photo/{filename}(filename=${artist.avatarPath})}"
+                             th:alt="${artist.name}"
+                             class="artist-avatar-img">
+                        <svg th:if="${artist.avatarPath == null or artist.avatarPath == ''}"
+                             xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="#aaa">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 4c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm0 14c-2.03 0-4.43-.82-6.14-2.88C7.55 15.8 9.68 15 12 15s4.45.8 6.14 2.12C16.43 19.18 14.03 20 12 20z"></path>
+                        </svg>
+                        <span class="artist-avatar-name" th:text="${artist.name}">Artist Name</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-widget">
+                <h3>Thể loại</h3>
+                <div class="tag-container">
+                    <span class="tag-pill" th:each="genre : ${genres}" th:text="${genre.name}">
+                        Tên Thể loại
+                    </span>
+                </div>
+            </div>
+        </aside>
+
+    </div>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

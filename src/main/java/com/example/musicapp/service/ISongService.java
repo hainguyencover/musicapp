@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ISongService {
-//    List<Song> findAll(); // Hoặc List<SongDTO>
+    List<Song> findAll();
 
     Page<Song> findAll(String keyword, Pageable pageable); // Phương thức mới cho phân trang
 

@@ -1,5 +1,7 @@
 package com.example.musicapp.exception;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,11 +11,13 @@ import org.springframework.web.servlet.NoHandlerFoundException; // Import thêm
 
 @ControllerAdvice // Đánh dấu lớp này để xử lý exception toàn cục
 public class GlobalExceptionHandler {
+    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
+
     // Xử lý ResourceNotFoundException
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND) // Đảm bảo trả về status 404
     public String handleResourceNotFoundException(ResourceNotFoundException ex, Model model) {
-        System.err.println("ResourceNotFoundException caught: " + ex.getMessage()); // Log lỗi
+        logger.warn("ResourceNotFoundException caught: {}", ex.getMessage());
         model.addAttribute("errorMessage", ex.getMessage()); // Gửi message lỗi tới view
         // Bạn có thể tạo một trang lỗi 404 riêng
         return "error/404"; // Trả về view templates/error/404.html
@@ -23,7 +27,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(NoHandlerFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleNoHandlerFoundException(NoHandlerFoundException ex, Model model) {
-        System.err.println("NoHandlerFoundException caught: " + ex.getRequestURL());
+        logger.warn("NoHandlerFoundException caught: {}", ex.getRequestURL());
         model.addAttribute("errorMessage", "Xin lỗi, trang bạn tìm kiếm không tồn tại.");
         return "error/404"; // Dùng chung trang 404
     }
@@ -32,10 +36,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // Status 500
     public String handleGenericException(Exception ex, Model model) {
-        System.err.println("An unexpected error occurred: " + ex.getMessage());
-        ex.printStackTrace(); // In stack trace ra console (quan trọng khi dev)
+        logger.error("An unexpected error occurred:", ex); // Ghi đầy đủ stack trace
         model.addAttribute("errorMessage", "Đã có lỗi xảy ra. Vui lòng thử lại sau.");
-        // Bạn có thể tạo một trang lỗi 500 riêng
         return "error/500"; // Trả về view templates/error/500.html
     }
 
@@ -43,7 +45,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(StorageException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public String handleStorageException(StorageException ex, Model model) {
-        System.err.println("StorageException caught: " + ex.getMessage());
+        logger.error("StorageException caught:", ex);
         model.addAttribute("errorMessage", "Lỗi xử lý file: " + ex.getMessage());
         return "error/500"; // Hoặc một trang lỗi riêng cho file
     }
@@ -51,7 +53,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(StorageFileNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handleStorageFileNotFoundException(StorageFileNotFoundException ex, Model model) {
-        System.err.println("StorageFileNotFoundException caught: " + ex.getMessage());
+        logger.warn("StorageFileNotFoundException caught: {}", ex.getMessage());
         model.addAttribute("errorMessage", "Không tìm thấy file: " + ex.getMessage());
         return "error/404";
     }
@@ -59,7 +61,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DeletionBlockedException.class)
     @ResponseStatus(HttpStatus.CONFLICT) // Status 409 Conflict
     public String handleDeletionBlockedException(DeletionBlockedException ex, Model model) {
-        System.err.println("DeletionBlockedException caught: " + ex.getMessage());
+        logger.warn("DeletionBlockedException caught: {}", ex.getMessage());
         model.addAttribute("errorMessage", ex.getMessage());
         // Có thể dùng chung trang 500 hoặc tạo trang lỗi riêng "error/conflict"
         return "error/500";
@@ -68,9 +70,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(DuplicateNameException.class)
     @ResponseStatus(HttpStatus.CONFLICT) // Status 409 Conflict
     public String handleDuplicateNameException(DuplicateNameException ex, Model model) {
-        System.err.println("DuplicateNameException caught: " + ex.getMessage());
+        logger.warn("HandleDuplicateNameException caught: {}", ex.getMessage());
         model.addAttribute("errorMessage", ex.getMessage());
-        // Trả về trang 500, nhưng có thể tạo trang riêng cho conflict nếu cần
         return "error/500";
     }
 }

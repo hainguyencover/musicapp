@@ -23,16 +23,15 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    @Transactional(readOnly = true) // Đảm bảo transaction được mở (đặc biệt nếu FetchType là LAZY)
+    @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        // 1. Tìm user trong DB bằng username
+        // 1. Tìm user trong DB
         User user = userRepository.findByUsernameIgnoreCase(username)
                 .orElseThrow(() ->
-                        new UsernameNotFoundException("Không tìm thấy người dùng với tên đăng nhập: " + username));
+                        new UsernameNotFoundException("Không tìm thấy người dùng: " + username));
 
-        // 2. Chuyển đổi Set<RoleName> (Enum của chúng ta)
-        //    thành Set<GrantedAuthority> (của Spring Security)
+        // 2. Chuyển đổi Set<RoleName> thành Set<GrantedAuthority>
         Set<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(roleName -> new SimpleGrantedAuthority(roleName.name()))
                 .collect(Collectors.toSet());
@@ -45,7 +44,7 @@ public class CustomUserDetailsService implements UserDetailsService {
                 true, // accountNonExpired
                 true, // credentialsNonExpired
                 true, // accountNonLocked
-                authorities // Danh sách quyền
+                authorities // Quyền
         );
     }
 }
