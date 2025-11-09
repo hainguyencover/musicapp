@@ -11,28 +11,12 @@ import java.util.Set;
 @Table(name = "genres")
 @Getter
 @Setter
-@NoArgsConstructor
-public class Genre {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Genre extends BaseEntity {
 
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, unique = true)
     private String name;
 
-    // Relationship: One Genre can have many Songs
-    @OneToMany(mappedBy = "genre", fetch = FetchType.LAZY)
+    // Một Genre có nhiều bài hát (Song)
+    @OneToMany(mappedBy = "genre")
     private Set<Song> songs;
-
-    public Genre(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Genre{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

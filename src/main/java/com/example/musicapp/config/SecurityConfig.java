@@ -1,88 +1,87 @@
 package com.example.musicapp.config;
 
-import com.example.musicapp.service.security.CustomUserDetailsService;
+import com.example.musicapp.config.jwt.JwtAuthFilter;
+import com.example.musicapp.service.impl.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
+@EnableMethodSecurity // Cho phép dùng @PreAuthorize (nếu cần)
 public class SecurityConfig {
 
-    private final CustomUserDetailsService customUserDetailsService;
-    private final AuthenticationSuccessHandler customAuthenticationSuccessHandler;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService, AuthenticationSuccessHandler customAuthenticationSuccessHandler) {
-        this.customUserDetailsService = customUserDetailsService;
-        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
-    }
+    @Autowired
+    private JwtAuthFilter jwtAuthFilter;
 
+    // Bean mã hóa mật khẩu
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
+    // Bean quản lý xác thực
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
+    // Bean cung cấp provider (kết hợp UserDetailsService và PasswordEncoder)
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService);
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+    // Cấu hình chuỗi filter bảo mật
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 1. Dịch vụ User (Đọc từ DB)
-                .userDetailsService(customUserDetailsService)
+                // Tắt CSRF (vì dùng JWT, không dựa trên session/cookie)
+                .csrf(csrf -> csrf.disable())
 
-                // 2. Cấu hình Phân quyền (ĐÃ CẬP NHẬT)
-                .authorizeHttpRequests(authorize -> authorize
+                // Bật CORS (theo cấu hình trong WebConfig)
+                .cors(cors -> {
+                })
 
-                        // 2.1. PUBLIC (Ai cũng xem được)
-                        .requestMatchers(
-                                "/",
-                                "/css/**",
-                                "/js/**",
-                                "/error/**",
-                                "/login-processing", // Trang login
-                                "/register", // Trang register
-                                "/songs/play/**", // API phát nhạc
-                                "/artists/photo/**" // API xem ảnh
-                        ).permitAll()
+                // Cấu hình Session: Không sử dụng session (STATELESS)
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                        // 2.2. USER (Chỉ cần đăng nhập)
-                        // Đây là các trang trải nghiệm của người dùng
-                        .requestMatchers(
-                                "/dashboard",
-                                "/play/**",
-                                "/favorites",
-                                "/api/favorites/**",
-                                "/explore/**" // <- URL MỚI CHO USER XEM LIST
-                        ).authenticated()
-
-                        // 2.3. ADMIN ONLY (Chỉ Admin)
-                        // Gộp tất cả các trang quản lý vào một quy tắc
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-
-                        // 2.4. Chặn mọi thứ còn lại
-                        .anyRequest().denyAll()
+                // Phân quyền truy cập
+                .authorizeHttpRequests(authz -> authz
+                        // Cho phép tất cả truy cập vào API đăng nhập, đăng ký
+                        .requestMatchers("/api/auth/**").permitAll()
+                        // Cho phép truy cập công khai vào API (ví dụ: lấy bài hát, tìm kiếm...)
+                        // Tạm thời mở rộng, sau này sẽ siết lại
+                        .requestMatchers("/api/songs/**", "/api/artists/**", "/api/genres/**").permitAll()
+                        // Yêu cầu ADMIN cho các API quản trị
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                        // Tất cả các request còn lại phải được xác thực
+                        .anyRequest().authenticated()
                 )
 
-                // 3. Cấu hình Form Login
-                .formLogin(form -> form
-                        .loginPage("/") // Báo Spring Security trang login của bạn ở đâu
-                        .loginProcessingUrl("/login-processing") // Nơi xử lý POST login
-                        .successHandler(customAuthenticationSuccessHandler)
-                        .failureUrl("/?error=true") // Về /login?error nếu sai
-                        .permitAll()
-                )
+                // Đăng ký provider
+                .authenticationProvider(authenticationProvider())
 
-                // 4. Cấu hình Logout
-                .logout(logout -> logout
-                        .logoutUrl("/logout") // (URL mặc định)
-                        .logoutSuccessUrl("/?logout=true") // 6. Chuyển về /login?logout sau khi logout
-                        .permitAll()
-                );
+                // Thêm filter JWT vào trước filter UsernamePasswordAuthenticationFilter
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
 }

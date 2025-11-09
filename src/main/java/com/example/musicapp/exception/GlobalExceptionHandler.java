@@ -1,77 +1,82 @@
 package com.example.musicapp.exception;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.example.musicapp.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
-import org.springframework.ui.Model;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.servlet.NoHandlerFoundException; // Import thêm
+import org.springframework.web.context.request.WebRequest;
 
-@ControllerAdvice // Đánh dấu lớp này để xử lý exception toàn cục
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
+
+@ControllerAdvice // Bắt tất cả exception trong ứng dụng
 public class GlobalExceptionHandler {
-    private static final Logger logger = LoggerFactory.getLogger(GlobalExceptionHandler.class);
 
-    // Xử lý ResourceNotFoundException
+    // Bắt lỗi 404
     @ExceptionHandler(ResourceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND) // Đảm bảo trả về status 404
-    public String handleResourceNotFoundException(ResourceNotFoundException ex, Model model) {
-        logger.warn("ResourceNotFoundException caught: {}", ex.getMessage());
-        model.addAttribute("errorMessage", ex.getMessage()); // Gửi message lỗi tới view
-        // Bạn có thể tạo một trang lỗi 404 riêng
-        return "error/404"; // Trả về view templates/error/404.html
+    public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.NOT_FOUND.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
     }
 
-    // Xử lý NoHandlerFoundException (khi không tìm thấy URL mapping)
-    @ExceptionHandler(NoHandlerFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleNoHandlerFoundException(NoHandlerFoundException ex, Model model) {
-        logger.warn("NoHandlerFoundException caught: {}", ex.getRequestURL());
-        model.addAttribute("errorMessage", "Xin lỗi, trang bạn tìm kiếm không tồn tại.");
-        return "error/404"; // Dùng chung trang 404
+    // Bắt lỗi validation (@Valid) - 400 Bad Request
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, WebRequest request) {
+        Map<String, String> errors = new HashMap<>();
+        ex.getBindingResult().getFieldErrors().forEach(error ->
+                errors.put(error.getField(), error.getDefaultMessage())
+        );
+
+        Map<String, Object> body = new HashMap<>();
+        body.put("timestamp", LocalDateTime.now());
+        body.put("status", HttpStatus.BAD_REQUEST.value());
+        body.put("errors", errors);
+
+        return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
-    // (Tùy chọn) Xử lý các lỗi chung khác (Exception.class là lớp cha của mọi exception)
+    // Bắt lỗi 403 (Cấm)
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> handleForbiddenException(ForbiddenException ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.FORBIDDEN.value(),
+                ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
+    }
+
+    // Bắt các lỗi chung (ví dụ: email đã tồn tại) - 400 Bad Request
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<ErrorResponse> handleGenericRuntimeException(RuntimeException ex, WebRequest request) {
+        // Tránh bắt lại lỗi 404
+        if (ex instanceof ResourceNotFoundException) {
+            return handleResourceNotFoundException((ResourceNotFoundException) ex, request);
+        }
+
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.BAD_REQUEST.value(), // Mặc định là 400
+                ex.getMessage(), // Lấy từ authService.register
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    // Bắt các lỗi 500
     @ExceptionHandler(Exception.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR) // Status 500
-    public String handleGenericException(Exception ex, Model model) {
-        logger.error("An unexpected error occurred:", ex); // Ghi đầy đủ stack trace
-        model.addAttribute("errorMessage", "Đã có lỗi xảy ra. Vui lòng thử lại sau.");
-        return "error/500"; // Trả về view templates/error/500.html
-    }
-
-    // (Tùy chọn) Xử lý lỗi lưu trữ file
-    @ExceptionHandler(StorageException.class)
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String handleStorageException(StorageException ex, Model model) {
-        logger.error("StorageException caught:", ex);
-        model.addAttribute("errorMessage", "Lỗi xử lý file: " + ex.getMessage());
-        return "error/500"; // Hoặc một trang lỗi riêng cho file
-    }
-
-    @ExceptionHandler(StorageFileNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    public String handleStorageFileNotFoundException(StorageFileNotFoundException ex, Model model) {
-        logger.warn("StorageFileNotFoundException caught: {}", ex.getMessage());
-        model.addAttribute("errorMessage", "Không tìm thấy file: " + ex.getMessage());
-        return "error/404";
-    }
-
-    @ExceptionHandler(DeletionBlockedException.class)
-    @ResponseStatus(HttpStatus.CONFLICT) // Status 409 Conflict
-    public String handleDeletionBlockedException(DeletionBlockedException ex, Model model) {
-        logger.warn("DeletionBlockedException caught: {}", ex.getMessage());
-        model.addAttribute("errorMessage", ex.getMessage());
-        // Có thể dùng chung trang 500 hoặc tạo trang lỗi riêng "error/conflict"
-        return "error/500";
-    }
-
-    @ExceptionHandler(DuplicateNameException.class)
-    @ResponseStatus(HttpStatus.CONFLICT) // Status 409 Conflict
-    public String handleDuplicateNameException(DuplicateNameException ex, Model model) {
-        logger.warn("HandleDuplicateNameException caught: {}", ex.getMessage());
-        model.addAttribute("errorMessage", ex.getMessage());
-        return "error/500";
+    public ResponseEntity<ErrorResponse> handleGlobalException(Exception ex, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse(
+                HttpStatus.INTERNAL_SERVER_ERROR.value(),
+                "Đã có lỗi xảy ra ở máy chủ: " + ex.getMessage(),
+                LocalDateTime.now()
+        );
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

@@ -5,50 +5,47 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "songs")
 @Getter
 @Setter
-@NoArgsConstructor
-public class Song {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Song extends BaseEntity {
 
-    @Column(nullable = false, length = 255)
-    private String name;
+    @Column(nullable = false)
+    private String title;
 
-    // Relationship: Many Songs belong to one Artist
-    // @JoinColumn specifies the foreign key column in the 'songs' table
-    // FetchType.EAGER (or default) means Artist info is loaded immediately with Song info
-    @ManyToOne(fetch = FetchType.EAGER)
+    @Column(nullable = false)
+    private int duration;
+
+    @Column(name = "file_url", nullable = false)
+    private String fileUrl;
+
+    @Column(name = "image_url")
+    private String imageUrl;
+
+    // --- Relationships ---
+
+    // Nhiều bài hát (Song) thuộc về một nghệ sĩ (Artist)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "artist_id", nullable = false)
     private Artist artist;
 
-    // Relationship: Many Songs belong to one Genre
-    @ManyToOne(fetch = FetchType.EAGER)
+    // Nhiều bài hát (Song) thuộc về một thể loại (Genre)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "genre_id", nullable = false)
     private Genre genre;
 
-    @Column(name = "file_path", nullable = false) // Store the path to the music file
-    private String filePath;
+    // Một bài hát (Song) có thể ở trong nhiều playlist (PlaylistSong)
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<PlaylistSong> playlistSongs;
 
-    // Constructors (optional)
-    public Song(String name, Artist artist, Genre genre, String filePath) {
-        this.name = name;
-        this.artist = artist;
-        this.genre = genre;
-        this.filePath = filePath;
-    }
+    // Một bài hát (Song) có thể được nhiều người yêu thích (UserFavorite)
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<UserFavorite> userFavorites;
 
-    @Override
-    public String toString() {
-        return "Song{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", artist=" + (artist != null ? artist.getName() : "null") + // Avoid recursion
-                ", genre=" + (genre != null ? genre.getName() : "null") +   // Avoid recursion
-                ", filePath='" + filePath + '\'' +
-                '}';
-    }
+    // Một bài hát (Song) có thể có nhiều lượt nghe
+    @OneToMany(mappedBy = "song", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ListeningHistory> listeningHistories;
 }

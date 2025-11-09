@@ -3,7 +3,7 @@ package com.example.musicapp.service;
 import com.example.musicapp.dto.UserRegistrationDTO;
 import com.example.musicapp.entity.Artist;
 import com.example.musicapp.entity.Song;
-import com.example.musicapp.entity.User; // 1. THÊM IMPORT
+import com.example.musicapp.entity.Account; // 1. THÊM IMPORT
 import org.springframework.data.domain.Page; // 2. THÊM IMPORT
 import org.springframework.data.domain.Pageable;
 
@@ -52,7 +52,7 @@ public interface IUserService {
 
     Set<Artist> getFavoriteArtists(String username);
 
-    Page<User> findAll(Pageable pageable);
+    Page<Account> findAll(Pageable pageable);
 
     long count();
 }

@@ -15,44 +15,17 @@ import java.util.List;
 @Repository
 public interface SongRepository extends JpaRepository<Song, Long> {
 
-    // Kiểm tra xem có bài hát nào thuộc về Artist ID này không
-    boolean existsByArtistId(Long artistId);
+    // Tìm bài hát theo tiêu đề (cho chức năng tìm kiếm)
+    List<Song> findByTitleContainingIgnoreCase(String title);
 
-    // Kiểm tra xem có bài hát nào thuộc về Genre ID này không
+    // Tìm bài hát theo ID nghệ sĩ
+    List<Song> findByArtistId(Long artistId);
+
+    // Tìm bài hát theo ID thể loại
+    List<Song> findByGenreId(Long genreId);
+
     boolean existsByGenreId(Long genreId);
 
-    boolean existsByNameIgnoreCaseAndArtistId(String name, Long artistId);
+    boolean existsByArtistId(Long artistId);
 
-    boolean existsByNameIgnoreCaseAndArtistIdAndIdNot(String name, Long artistId, Long songId);
-
-    /**
-     * Tìm kiếm bài hát theo tên (không phân biệt hoa thường, tìm kiếm một phần).
-     *
-     * @param name     Tên bài hát (keyword)
-     * @param pageable Thông tin phân trang
-     * @return Một trang (Page) các bài hát
-     */
-    Page<Song> findByNameContainingIgnoreCase(String name, Pageable pageable);
-
-    /**
-     * MỚI: Tìm các bài hát của một nghệ sĩ (có phân trang).
-     */
-    Page<Song> findByArtistId(Long artistId, Pageable pageable);
-
-    /**
-     * MỚI: Tìm các thể loại nhạc (duy nhất) mà một nghệ sĩ thể hiện.
-     */
-    @Query("SELECT DISTINCT s.genre FROM Song s WHERE s.artist.id = :artistId")
-    List<Genre> findDistinctGenresByArtistId(@Param("artistId") Long artistId);
-
-    /**
-     * MỚI: Tìm các bài hát của một thể loại (có phân trang).
-     */
-    Page<Song> findByGenreId(Long genreId, Pageable pageable);
-
-    /**
-     * MỚI: Tìm các nghệ sĩ (duy nhất) có bài hát trong thể loại này.
-     */
-    @Query("SELECT DISTINCT s.artist FROM Song s WHERE s.genre.id = :genreId")
-    List<Artist> findDistinctArtistsByGenreId(@Param("genreId") Long genreId);
 }
