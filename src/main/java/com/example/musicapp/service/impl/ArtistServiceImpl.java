@@ -78,4 +78,10 @@ public class ArtistServiceImpl implements IArtistService {
         // Chỉ xóa nếu không có bài hát nào liên kết
         artistRepository.deleteById(id);
     }
+
+    @Override
+    public long count() {
+        // Chỉ cần gọi JpaRepository.count()
+        return artistRepository.count();
+    }
 }

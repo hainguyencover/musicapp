@@ -17,5 +17,7 @@ public interface IArtistService {
     Artist save(Artist artist); // Dùng cho cả tạo mới và cập nhật
 
     void deleteById(Long id);
+
+    long count();
     // Có thể thêm các phương thức nghiệp vụ khác nếu cần
 }

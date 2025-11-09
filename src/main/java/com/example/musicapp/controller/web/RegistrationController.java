@@ -49,7 +49,7 @@ public class RegistrationController {
 
             // 3. Đăng ký thành công -> Chuyển hướng về login
             redirectAttributes.addFlashAttribute("successMessage", "Đăng ký thành công! Vui lòng đăng nhập.");
-            return "redirect:/login"; // (Spring Security cung cấp /login)
+            return "redirect:/"; // (Spring Security cung cấp /login)
 
         } catch (DuplicateNameException | IllegalArgumentException e) {
             // 4. Bắt lỗi (trùng tên, hoặc mật khẩu không khớp)

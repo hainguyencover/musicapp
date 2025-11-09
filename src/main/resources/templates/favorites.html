@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="vi">
+<head th:replace="~{layout/main :: head('Bài hát yêu thích')}">
+    <title></title>
+</head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1><span sec:authentication="name">User</span>'s Favorite Songs</h1>
+
+    <div th:if="${songs == null or songs.isEmpty()}" class="alert alert-info" style="margin-top: 2rem;">
+        Bạn chưa yêu thích bài hát nào. Hãy nhấn nút "Tim" 💚 trên dashboard hoặc trình phát nhạc!
+    </div>
+
+    <div class.="dashboard-layout" th:if="${songs != null and !songs.isEmpty()}">
+
+        <main class.="dashboard-main" style="grid-column: 1 / -1;"><h2>Danh sách yêu thích</h2>
+
+            <div class.="song-list-container">
+                <div class="song-card" th:each="song : ${songs}">
+                    <div class="song-card-info">
+                        <span class="song-card-title" th:text="${song.name}">Tên Bài hát</span>
+                        <span class="song-card-artist" th:text="${song.artist?.name}">Tên Nghệ sĩ</span>
+                    </div>
+
+                    <div class="song-card-actions" style="display: flex; align-items: center; gap: 1rem;">
+
+                        <button class="like-btn" th:data-song-id="${song.id}" title="Yêu thích">
+                            <svg class="icon-heart" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                 viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+
+                        <a th:href="@{/play/{id}(id=${song.id})}" class="song-card-play-btn" title="Phát nhạc">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 fill="currentColor">
+                                <path d="M8 5v14l11-7z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+    </div>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

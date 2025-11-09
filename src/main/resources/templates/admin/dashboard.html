@@ -1,0 +1,222 @@
+<!--<!DOCTYPE html>-->
+<!--<html xmlns:th="http://www.thymeleaf.org" lang="vi">-->
+<!--<head th:replace="~{layout/main :: head('Admin Dashboard')}"></head>-->
+<!--<body>-->
+
+<!--<header th:replace="~{layout/main :: header}"></header>-->
+
+<!--<div class="container">-->
+<!--    <div class="admin-stats" style="display: flex; gap: 1rem; margin-top: 2rem;">-->
+<!--        <div class="stat-card"-->
+<!--             style="background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">-->
+<!--            <h3>Tổng số Users</h3>-->
+<!--            <p th:text="${userCount}" style="font-size: 2rem; font-weight: 700;">0</p>-->
+<!--        </div>-->
+<!--        <div class="stat-card"-->
+<!--             style="background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">-->
+<!--            <h3>Tổng số Bài hát</h3>-->
+<!--            <p th:text="${songCount}" style="font-size: 2rem; font-weight: 700;">0</p>-->
+<!--        </div>-->
+<!--        <div class="stat-card"-->
+<!--             style="background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">-->
+<!--            <h3>Tổng số Nghệ sĩ</h3>-->
+<!--            <p th:text="${artistCount}" style="font-size: 2rem; font-weight: 700;">0</p>-->
+<!--        </div>-->
+<!--        <div class="stat-card"-->
+<!--             style="background: #fff; padding: 1.5rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">-->
+<!--            <h3>Tổng số Thể loại</h3>-->
+<!--            <p th:text="${genreCount}" style="font-size: 2rem; font-weight: 700;">0</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+
+<!--<footer th:replace="~{layout/main :: footer}"></footer>-->
+<!--</body>-->
+<!--</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="vi">
+<head th:replace="~{layout/main :: head('Admin Dashboard')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+
+    <!-- Statistics Cards -->
+    <div class="admin-stats-grid">
+        <!-- Users Card -->
+        <div class="stat-card stat-card-users">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="9" cy="7" r="4"></circle>
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Tổng số Users</h3>
+                <p class="stat-number" th:text="${userCount}">0</p>
+                <span class="stat-label">Người dùng đã đăng ký</span>
+            </div>
+            <div class="stat-badge stat-badge-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                +12%
+            </div>
+        </div>
+
+        <!-- Songs Card -->
+        <div class="stat-card stat-card-songs">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <path d="M9 18V5l12-2v13"></path>
+                    <circle cx="6" cy="18" r="3"></circle>
+                    <circle cx="18" cy="16" r="3"></circle>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Tổng số Bài hát</h3>
+                <p class="stat-number" th:text="${songCount}">0</p>
+                <span class="stat-label">Bài hát trong hệ thống</span>
+            </div>
+            <div class="stat-badge stat-badge-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                +8%
+            </div>
+        </div>
+
+        <!-- Artists Card -->
+        <div class="stat-card stat-card-artists">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Tổng số Nghệ sĩ</h3>
+                <p class="stat-number" th:text="${artistCount}">0</p>
+                <span class="stat-label">Nghệ sĩ trong hệ thống</span>
+            </div>
+            <div class="stat-badge stat-badge-purple">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                +5%
+            </div>
+        </div>
+
+        <!-- Genres Card -->
+        <div class="stat-card stat-card-genres">
+            <div class="stat-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <line x1="8" y1="6" x2="21" y2="6"></line>
+                    <line x1="8" y1="12" x2="21" y2="12"></line>
+                    <line x1="8" y1="18" x2="21" y2="18"></line>
+                    <line x1="3" y1="6" x2="3.01" y2="6"></line>
+                    <line x1="3" y1="12" x2="3.01" y2="12"></line>
+                    <line x1="3" y1="18" x2="3.01" y2="18"></line>
+                </svg>
+            </div>
+            <div class="stat-content">
+                <h3>Tổng số Thể loại</h3>
+                <p class="stat-number" th:text="${genreCount}">0</p>
+                <span class="stat-label">Thể loại âm nhạc</span>
+            </div>
+            <div class="stat-badge stat-badge-orange">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2">
+                    <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                    <polyline points="17 6 23 6 23 12"></polyline>
+                </svg>
+                +3%
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="admin-quick-actions">
+        <h2 style="margin-bottom: 1.5rem; color: #4a5568;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 8px;">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M12 1v6m0 6v6m5.657-13.657l-4.243 4.243m-4.243 4.243l-4.243 4.243M23 12h-6m-6 0H1m18.364-5.657l-4.243 4.243m-4.243 4.243l-4.243 4.243"></path>
+            </svg>
+            Thao tác nhanh
+        </h2>
+
+        <div class="quick-actions-grid">
+            <a th:href="@{/admin/songs/create}" class="quick-action-card">
+                <div class="quick-action-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>
+                </div>
+                <h3>Thêm bài hát mới</h3>
+                <p>Upload bài hát mới vào hệ thống</p>
+            </a>
+
+            <a th:href="@{/admin/artists/create}" class="quick-action-card">
+                <div class="quick-action-icon" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="8.5" cy="7" r="4"></circle>
+                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                    </svg>
+                </div>
+                <h3>Thêm nghệ sĩ mới</h3>
+                <p>Tạo hồ sơ nghệ sĩ mới</p>
+            </a>
+
+            <a th:href="@{/admin/genres/create}" class="quick-action-card">
+                <div class="quick-action-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                        <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+                        <line x1="7" y1="7" x2="7.01" y2="7"></line>
+                    </svg>
+                </div>
+                <h3>Thêm thể loại mới</h3>
+                <p>Tạo thể loại âm nhạc mới</p>
+            </a>
+
+            <a th:href="@{/admin/users}" class="quick-action-card">
+                <div class="quick-action-icon" style="background: linear-gradient(135deg, #fa709a, #fee140);">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2">
+                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="9" cy="7" r="4"></circle>
+                        <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                        <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                </div>
+                <h3>Quản lý người dùng</h3>
+                <p>Xem và quản lý tài khoản</p>
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

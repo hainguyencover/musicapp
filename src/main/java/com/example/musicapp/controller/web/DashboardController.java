@@ -30,6 +30,6 @@ public class DashboardController {
         model.addAttribute("artists", artistService.findAll());
         model.addAttribute("genres", genreService.findAll());
 
-        return "dashboard"; // Trả về templates/dashboard.html
+        return "user/dashboard"; // Trả về templates/dashboard.html
     }
 }

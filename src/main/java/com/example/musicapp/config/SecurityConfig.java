@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 
 @Configuration
@@ -16,9 +17,11 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     private final CustomUserDetailsService customUserDetailsService;
+    private final AuthenticationSuccessHandler customAuthenticationSuccessHandler;
 
-    public SecurityConfig(CustomUserDetailsService customUserDetailsService) {
+    public SecurityConfig(CustomUserDetailsService customUserDetailsService, AuthenticationSuccessHandler customAuthenticationSuccessHandler) {
         this.customUserDetailsService = customUserDetailsService;
+        this.customAuthenticationSuccessHandler = customAuthenticationSuccessHandler;
     }
 
     @Bean
@@ -29,50 +32,55 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                // 4. Báo cho Spring Security dùng CustomUserDetailsService của chúng ta
+                // 1. Dịch vụ User (Đọc từ DB)
                 .userDetailsService(customUserDetailsService)
 
+                // 2. Cấu hình Phân quyền (ĐÃ CẬP NHẬT)
                 .authorizeHttpRequests(authorize -> authorize
-                        // 1. PUBLIC (Ai cũng xem được)
+
+                        // 2.1. PUBLIC (Ai cũng xem được)
                         .requestMatchers(
                                 "/",
                                 "/css/**",
                                 "/js/**",
                                 "/error/**",
-                                "/login", // Trang login
+                                "/login-processing", // Trang login
                                 "/register", // Trang register
-                                "/songs/play/**",
-                                "/artists/photo/**"
+                                "/songs/play/**", // API phát nhạc
+                                "/artists/photo/**" // API xem ảnh
                         ).permitAll()
-                        // 2. ADMIN ONLY (Chỉ Admin được C/U/D)
+
+                        // 2.2. USER (Chỉ cần đăng nhập)
+                        // Đây là các trang trải nghiệm của người dùng
                         .requestMatchers(
-                                "/songs/create", "/songs/edit/**", "/songs/update", "/songs/delete/**",
-                                "/artists/create", "/artists/edit/**", "/artists/update", "/artists/delete/**",
-                                "/genres/create", "/genres/edit/**", "/genres/update", "/genres/delete/**"
-                        ).hasRole("ADMIN")
-                        // 3. USER (Phải đăng nhập)
-                        // Bất kỳ ai đã đăng nhập (USER hoặc ADMIN) đều có thể XEM (GET) danh sách
-                        .requestMatchers(
-                                HttpMethod.GET,
-                                "/play/**",
                                 "/dashboard",
-                                "/songs",
-                                "/artists",
-                                "/genres"
+                                "/play/**",
+                                "/favorites",
+                                "/api/favorites/**",
+                                "/explore/**" // <- URL MỚI CHO USER XEM LIST
                         ).authenticated()
+
+                        // 2.3. ADMIN ONLY (Chỉ Admin)
+                        // Gộp tất cả các trang quản lý vào một quy tắc
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+
+                        // 2.4. Chặn mọi thứ còn lại
                         .anyRequest().denyAll()
                 )
-                // Cấu hình Form Login (trỏ đến trang /login tùy chỉnh)
+
+                // 3. Cấu hình Form Login
                 .formLogin(form -> form
-                        .loginPage("/login") // Báo Spring Security trang login của bạn ở đâu
-                        .loginProcessingUrl("/login") // Nơi xử lý POST login
-                        .defaultSuccessUrl("/dashboard", true) // Tới /songs sau khi login
-                        .failureUrl("/login?error=true") // Về /login?error nếu sai
+                        .loginPage("/") // Báo Spring Security trang login của bạn ở đâu
+                        .loginProcessingUrl("/login-processing") // Nơi xử lý POST login
+                        .successHandler(customAuthenticationSuccessHandler)
+                        .failureUrl("/?error=true") // Về /login?error nếu sai
                         .permitAll()
                 )
+
+                // 4. Cấu hình Logout
                 .logout(logout -> logout
                         .logoutUrl("/logout") // (URL mặc định)
-                        .logoutSuccessUrl("/login?logout=true") // 6. Chuyển về /login?logout sau khi logout
+                        .logoutSuccessUrl("/?logout=true") // 6. Chuyển về /login?logout sau khi logout
                         .permitAll()
                 );
         return http.build();

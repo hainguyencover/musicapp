@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="~{layout/main :: head('Quản lý Người dùng')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <!-- Messages -->
+    <div th:if="${successMessage}" class="success-message" th:text="${successMessage}"></div>
+    <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+
+    <!-- Users Table -->
+    <div class="table-container">
+        <table th:if="${userPage != null and !userPage.isEmpty()}">
+            <thead>
+            <tr>
+                <th style="width: 80px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 5px;">
+                        <line x1="21" y1="10" x2="3" y2="10"></line>
+                        <line x1="21" y1="6" x2="3" y2="6"></line>
+                        <line x1="21" y1="14" x2="3" y2="14"></line>
+                        <line x1="21" y1="18" x2="3" y2="18"></line>
+                    </svg>
+                    ID
+                </th>
+                <th>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 5px;">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    Tên đăng nhập
+                </th>
+                <th style="width: 150px; text-align: center;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 5px;">
+                        <polyline points="9 11 12 14 22 4"></polyline>
+                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                    </svg>
+                    Trạng thái
+                </th>
+                <th style="width: 250px;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                         stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 5px;">
+                        <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                        <path d="M2 17l10 5 10-5"></path>
+                        <path d="M2 12l10 5 10-5"></path>
+                    </svg>
+                    Vai trò
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${userPage.content}">
+                <td th:text="${user.id}"></td>
+                <td>
+                    <div class="user-info-cell">
+                        <div class="user-avatar-initial"
+                             th:style="'background: linear-gradient(135deg, ' + (${user.id % 2 == 0} ? '#667eea, #764ba2' : '#f093fb, #f5576c') + ');'">
+                            <span th:text="${#strings.substring(user.username, 0, 1).toUpperCase()}">U</span>
+                        </div>
+                        <span th:text="${user.username}" class="username-text">username</span>
+                    </div>
+                </td>
+                <td style="text-align: center;">
+                    <span class="status-badge"
+                          th:classappend="${user.enabled} ? 'status-active' : 'status-inactive'">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"
+                             style="vertical-align: middle; margin-right: 4px;">
+                            <circle cx="12" cy="12" r="10"></circle>
+                        </svg>
+                        <span th:text="${user.enabled} ? 'Kích hoạt' : 'Vô hiệu hóa'">Status</span>
+                    </span>
+                </td>
+                <td>
+                    <div class="roles-container">
+                        <span class="role-badge"
+                              th:each="role : ${user.roles}"
+                              th:classappend="${role.name() == 'ROLE_ADMIN'} ? 'role-admin' : 'role-user'">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                                 stroke="currentColor" stroke-width="2" style="vertical-align: middle; margin-right: 4px;">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                            </svg>
+                            <span th:text="${#strings.replace(role.name(), 'ROLE_', '')}">ROLE</span>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!-- Empty State -->
+        <div th:if="${userPage == null or userPage.isEmpty()}" class="empty-state">
+            <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2" style="color: #cbd5e0; margin-bottom: 1rem;">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            <h3 style="color: #718096; font-size: 1.2rem; margin-bottom: 0.5rem;">Không có người dùng nào</h3>
+            <p style="color: #a0aec0; font-size: 0.9rem;">Danh sách người dùng đang trống</p>
+        </div>
+    </div>
+
+    <!-- Pagination -->
+    <div th:if="${userPage != null and userPage.totalPages > 0}" class="pagination">
+        <span th:text="|Trang ${userPage.number + 1} / ${userPage.totalPages}|"></span>
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <!-- First Page -->
+                <li class="page-item" th:classappend="${userPage.first} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/admin/users(size=${userPage.size}, page=0, sort=${param.sort})}"
+                       title="Trang đầu">&laquo;</a>
+                </li>
+
+                <!-- Previous Page -->
+                <li class="page-item" th:classappend="${userPage.first} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/admin/users(size=${userPage.size}, page=${userPage.number - 1}, sort=${param.sort})}"
+                       th:if="${!userPage.first}"
+                       title="Trang trước">&lsaquo;</a>
+                    <span class="page-link" th:if="${userPage.first}" title="Trang trước">&lsaquo;</span>
+                </li>
+
+                <!-- Page Numbers -->
+                <th:block th:with="
+                    currentPage=${userPage.number},
+                    totalPages=${userPage.totalPages},
+                    startPage=${T(java.lang.Math).max(0, currentPage - 2)},
+                    endPage=${T(java.lang.Math).min(totalPages - 1, currentPage + 2)}">
+                    <li class="page-item" th:each="i : ${#numbers.sequence(startPage, endPage)}"
+                        th:classappend="${i == currentPage} ? 'active'">
+                        <a class="page-link"
+                           th:href="@{/admin/users(size=${userPage.size}, page=${i}, sort=${param.sort})}"
+                           th:text="${i + 1}"></a>
+                    </li>
+                </th:block>
+
+                <!-- Next Page -->
+                <li class="page-item" th:classappend="${userPage.last} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/admin/users(size=${userPage.size}, page=${userPage.number + 1}, sort=${param.sort})}"
+                       th:if="${!userPage.last}"
+                       title="Trang sau">&rsaquo;</a>
+                    <span class="page-link" th:if="${userPage.last}" title="Trang sau">&rsaquo;</span>
+                </li>
+
+                <!-- Last Page -->
+                <li class="page-item" th:classappend="${userPage.last} ? 'disabled'">
+                    <a class="page-link"
+                       th:href="@{/admin/users(size=${userPage.size}, page=${userPage.totalPages - 1}, sort=${param.sort})}"
+                       title="Trang cuối">&raquo;</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+
+</body>
+</html>

@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/main :: head('Chỉnh sửa Thể loại')}"></head>
+<head th:replace="~{layout/main :: head('Thêm Thể loại mới')}"></head>
 <body>
 
 <header th:replace="~{layout/main :: header}"></header>
 
 <div class="container">
-    <h1>Chỉnh sửa Thể loại</h1>
+    <h1>Thêm Thể loại mới</h1>
 
-    <form th:action="@{/genres/update}" th:object="${genreDTO}" method="post">
+    <form th:action="@{/admin/genres/create}" th:object="${genreDTO}" method="post">
         <div th:if="${#fields.hasGlobalErrors()}" class="error-message">
             <p th:each="err : ${#fields.globalErrors()}" th:text="${err}"></p>
         </div>
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-        <input type="hidden" th:field="*{id}" />
         <div>
             <label for="name">Tên Thể loại:</label>
-            <input type="text" id="name" th:field="*{name}" />
+            <input type="text" id="name" th:field="*{name}"/>
             <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
         </div>
         <div>
-            <button type="submit">Cập nhật</button>
-            <a th:href="@{/genres}">Hủy</a>
+            <button type="submit">Lưu Thể loại</button>
+            <a th:href="@{/admin/genres}">Hủy</a>
         </div>
     </form>
 </div>

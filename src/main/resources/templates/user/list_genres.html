@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="~{layout/main :: head('Khám phá Thể loại')}"></head>
+<body>
+
+<header th:replace="~{layout/main :: header}"></header>
+
+<div class="container">
+    <h1>Khám phá Thể loại</h1>
+
+    <form th:action="@{/explore/genres}" method="get" class="mb-3">
+    </form>
+
+    <div th:if="${genrePage == null or genrePage.isEmpty()}" class="alert alert-info">
+        Không tìm thấy thể loại nào phù hợp.
+    </div>
+
+    <table th:if="${genrePage != null and !genrePage.isEmpty()}">
+        <thead>
+        <tr>
+            <th>Tên Thể loại</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="genre : ${genrePage.content}">
+            <td th:text="${genre.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div th:if="${genrePage.totalPages > 0}" class="pagination" style="margin-top: 20px;">
+    </div>
+</div>
+
+<footer th:replace="~{layout/main :: footer}"></footer>
+</body>
+</html>

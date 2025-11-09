@@ -77,4 +77,10 @@ public class GenreServiceImpl implements IGenreService {
         // Chỉ xóa nếu không có bài hát nào liên kết
         genreRepository.deleteById(id);
     }
+
+    @Override
+    public long count() {
+        // Chỉ cần gọi JpaRepository.count()
+        return genreRepository.count();
+    }
 }

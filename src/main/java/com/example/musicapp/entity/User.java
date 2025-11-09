@@ -40,6 +40,27 @@ public class User {
     @Column(name = "role", nullable = false)
     private Set<RoleName> roles = new HashSet<>();
 
+    /**
+     * Danh sách các bài hát User này đã yêu thích.
+     * Mối quan hệ Nhiều-Nhiều (ManyToMany).
+     * LAZY: Chỉ tải danh sách này khi gọi user.getFavoriteSongs()
+     */
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_favorite_songs", // Tên bảng liên kết (DB)
+            joinColumns = @JoinColumn(name = "user_id"), // Cột trỏ về User
+            inverseJoinColumns = @JoinColumn(name = "song_id") // Cột trỏ về Song
+    )
+    private Set<Song> favoriteSongs = new HashSet<>();
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "user_favorite_artists", // Tên bảng liên kết (DB)
+            joinColumns = @JoinColumn(name = "user_id"), // Cột trỏ về User
+            inverseJoinColumns = @JoinColumn(name = "artist_id") // Cột trỏ về Artist
+    )
+    private Set<Artist> favoriteArtists = new HashSet<>();
+
     // Constructor (tùy chọn)
     public User(String username, String password, boolean enabled) {
         this.username = username;

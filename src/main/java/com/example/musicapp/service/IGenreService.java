@@ -17,4 +17,6 @@ public interface IGenreService {
     Genre save(Genre genre);
 
     void deleteById(Long id);
+
+    long count();
 }

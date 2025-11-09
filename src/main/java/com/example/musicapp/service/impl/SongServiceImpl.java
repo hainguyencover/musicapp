@@ -148,5 +148,44 @@ public class SongServiceImpl implements ISongService {
         }
     }
 
-    // Implement các phương thức tìm kiếm khác nếu có trong interface
+    @Override
+    public long count() {
+        // Chỉ cần gọi JpaRepository.count()
+        return songRepository.count();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Song> findByArtistId(Long artistId, Pageable pageable) {
+        return songRepository.findByArtistId(artistId, pageable);
+    }
+
+    /**
+     * MỚI: Bổ sung phương thức còn thiếu
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Genre> findDistinctGenresByArtistId(Long artistId) {
+        return songRepository.findDistinctGenresByArtistId(artistId);
+    }
+
+    /**
+     * Sửa tên từ findAllByGenreId -> findByGenreId để khớp Interface
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<Song> findByGenreId(Long genreId, Pageable pageable) {
+        return songRepository.findByGenreId(genreId, pageable);
+    }
+
+    /**
+     * MỚI: Bổ sung phương thức còn thiếu
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public List<Artist> findDistinctArtistsByGenreId(Long genreId) {
+        return songRepository.findDistinctArtistsByGenreId(genreId);
+    }
+
+
 }

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${artist.name}">Artist Details</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container mt-5">
+
+    <div class="card mb-4">
+        <div class="row g-0">
+            <div class="col-md-3">
+                <img th:src="@{/artists/photo/{path}(path=${artist.avatarPath})}"
+                     class="img-fluid rounded-start" alt="Avatar"
+                     onerror="this.src='https://via.placeholder.com/300'">
+            </div>
+            <div class="col-md-9">
+                <div class="card-body">
+                    <h1 class="card-title" th:text="${artist.name}">Artist Name</h1>
+                    <p class="card-text text-muted">Tiểu sử:</p>
+                    <p class="card-text" th:text="${artist.bio}">Artist biography...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h3>Bài hát</h3>
+            <div th:if="${songPage.isEmpty()}" class="alert alert-info">
+                Chưa có bài hát nào cho nghệ sĩ này.
+            </div>
+
+            <div class="list-group" th:unless="${songPage.isEmpty()}">
+                <a th:each="song : ${songPage.content}"
+                   th:href="@{/explore/songs/{id}(id=${song.id})}"
+                   class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
+
+                    <span th:text="${song.name}">Song Name</span>
+                    <small class="text-muted" th:text="${song.genre.name}">Genre</small>
+                </a>
+            </div>
+
+            <nav aria-label="Song pagination" th:if="${songPage.totalPages > 1}" class="mt-3">
+                <ul class="pagination">
+                    <li class="page-item" th:classappend="${!songPage.hasPrevious()} ? 'disabled'">
+                        <a class="page-link" th:href="@{/explore/artists/{id}(id=${artist.id}, page=${songPage.number - 1}, size=${songPage.size})}">Previous</a>
+                    </li>
+                    <li class="page-item" th:classappend="${!songPage.hasNext()} ? 'disabled'">
+                        <a class="page-link" th:href="@{/explore/artists/{id}(id=${artist.id}, page=${songPage.number + 1}, size=${songPage.size})}">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="col-md-4">
+            <h3>Thể loại liên quan</h3>
+            <div th:if="${relatedGenres.isEmpty()}" class="alert alert-info">
+                Không tìm thấy thể loại liên quan.
+            </div>
+            <div class="list-group" th:unless="${relatedGenres.isEmpty()}">
+                <a th:each="genre : ${relatedGenres}"
+                   th:href="@{/explore/genres/{id}(id=${genre.id})}"
+                   class="list-group-item list-group-item-action"
+                   th:text="${genre.name}">
+                    Genre Name
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
